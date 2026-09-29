@@ -1,0 +1,143 @@
+// Joist styling for cart, order summary and checkout surfaces.
+
+// Cart line items
+.cx-item-list-header th,
+.cx-item-list-header th.cx-item-list-qty,
+.cx-item-list-header .cx-item-list-desc {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--joist-ink-muted);
+}
+
+.cx-item-list-row,
+.cx-item-list-items {
+  border-color: var(--joist-line);
+}
+
+cx-cart-item-list,
+cx-cart-item,
+cx-order-summary,
+.cx-dialog-body {
+  .cx-name a,
+  .cx-link {
+    font-weight: 600;
+    color: var(--joist-ink);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--joist-link);
+      text-decoration: underline;
+    }
+  }
+
+  .cx-code {
+    font-family: var(--joist-font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1rem;
+    color: var(--joist-ink-muted);
+  }
+
+  .cx-image-container {
+    background: var(--joist-surface-sunken);
+    border-radius: var(--joist-radius-sm);
+  }
+
+  .cx-total .cx-value,
+  .cx-price .cx-value {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+// Order summary: a sunken panel beside the cart.
+cx-order-summary {
+  padding: var(--joist-space-4) var(--joist-space-6);
+  background-color: var(--joist-surface-sunken);
+  border-radius: var(--joist-radius-md);
+
+  .cx-summary-heading {
+    font-family: var(--joist-font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.75rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--joist-line);
+  }
+
+  .cx-summary-row {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .cx-summary-total {
+    padding-top: var(--joist-space-3);
+    border-top: 1px solid var(--joist-line);
+
+    .cx-summary-label {
+      font-family: var(--joist-font-display);
+      font-size: 1.125rem;
+      text-transform: uppercase;
+    }
+
+    .cx-summary-amount {
+      font-family: var(--joist-font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+  }
+}
+
+// Coupon and quick order sit under the summary: tighten their labels.
+cx-cart-coupon,
+cx-cart-quick-order-form {
+  label,
+  .cx-cart-coupon-title,
+  .cx-cart-quick-order-form-title {
+    font-weight: 600;
+  }
+}
+
+// Checkout progress
+cx-checkout-progress,
+cx-checkout-progress-mobile-top {
+  .cx-item .cx-link {
+    font-family: var(--joist-font-display);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--joist-ink-muted);
+
+    &.active {
+      color: var(--joist-ink);
+    }
+
+    &.is-disabled {
+      color: var(--joist-concrete-600);
+    }
+  }
+}
+
+// Address, payment and delivery mode cards
+cx-card .cx-card {
+  border: 1px solid var(--joist-line);
+  border-radius: var(--joist-radius-md);
+
+  &.cx-card-border {
+    border-color: var(--joist-line);
+  }
+
+  .cx-card-title {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--joist-ink-muted);
+  }
+}
+
+cx-card .cx-card.active,
+.cx-card-selected {
+  border: 2px solid var(--joist-ink);
+}

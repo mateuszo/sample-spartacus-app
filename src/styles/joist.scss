@@ -1,0 +1,15 @@
+// Joist design system. Loaded last in angular.json so it wins over the
+// Spartacus core and feature stylesheets on equal specificity.
+@import '../styles-config';
+@import '@spartacus/styles/vendor/bootstrap/scss/functions';
+@import '@spartacus/styles/vendor/bootstrap/scss/variables';
+@import '@spartacus/styles/vendor/bootstrap/scss/mixins';
+
+@import 'joist/fonts';
+@import 'joist/tokens';
+@import 'joist/spartacus';
+@import 'joist/product';
+@import 'joist/layout';
+@import 'joist/header';
+@import 'joist/home';
+@import 'joist/cart';

@@ -1,0 +1,43 @@
+<div class="usp">
+  <div class="inner usp__inner">
+    <ul class="usp__list" aria-label="Joist services">
+      <li><span class="fa-solid fa-truck" aria-hidden="true"></span>Free delivery over £75</li>
+      <li><span class="fa-solid fa-store" aria-hidden="true"></span>Click &amp; collect in 2 hours</li>
+      <li><span class="fa-solid fa-helmet-safety" aria-hidden="true"></span>Trade prices with a Joist account</li>
+    </ul>
+    <div class="usp__links">
+      <cx-page-slot position="SiteLinks" />
+      <cx-page-slot position="SiteContext" />
+    </div>
+  </div>
+</div>
+
+<header
+  id="cx-header"
+  cxSkipLink="cx-header"
+  [cxFocus]="focusConfig()"
+  [class.is-expanded]="isExpanded()"
+  (keydown.escape)="collapse()"
+  (click)="collapseIfBackdrop($event)"
+>
+  <div class="inner bar">
+    <cx-page-slot position="PreHeader" class="bar__burger" />
+    <cx-page-slot position="SiteLogo" class="bar__logo" />
+    <cx-page-slot position="SearchBox" class="bar__search" />
+    <div class="bar__actions">
+      <cx-page-slot position="SiteLogin" class="bar__login" />
+      <cx-page-slot position="MiniCart" class="bar__cart" />
+    </div>
+  </div>
+
+  <div class="categories">
+    <div class="inner">
+      <cx-page-slot position="NavigationBar" />
+    </div>
+  </div>
+
+  <cx-page-layout section="navigation" />
+</header>
+
+<cx-page-slot position="BottomHeaderSlot" class="cx-bottom-header-slot" />
+<cx-global-message aria-atomic="true" aria-live="assertive" />

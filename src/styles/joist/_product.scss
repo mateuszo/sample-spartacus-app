@@ -276,3 +276,24 @@ cx-product-attributes {
     margin: 0;
   }
 }
+
+// Product names are often marked up as <h3>; keep them in the product title
+// style rather than the uppercase display heading style.
+h2.cx-product-name,
+h3.cx-product-name,
+h4.cx-product-name {
+  @extend %joist-product-title;
+}
+
+cx-searchbox .products {
+  .cx-product-name {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .price {
+    font-family: var(--joist-font-display);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+  }
+}

@@ -1,0 +1,43 @@
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero__copy">
+    <p class="hero__eyebrow">Autumn project season</p>
+    <h2 id="hero-title" class="hero__title">Build it right.</h2>
+    <p class="hero__lead">
+      Timber, tools and trade-grade materials for people who do the work themselves. Cut to size in depot,
+      ready to collect in 2 hours.
+    </p>
+    <div class="hero__actions">
+      <a class="btn btn-primary" [routerLink]="['/search', 'timber']">Shop timber</a>
+      <a class="btn btn-secondary hero__secondary" routerLink="/login/register">Open a trade account</a>
+    </div>
+  </div>
+
+  <div class="hero__plan">
+    <div class="cutlist">
+      <div class="cutlist__head">
+        <p id="cut-list-title" class="cutlist__title">Example cut list</p>
+        <p class="cutlist__job">Decking frame · 3.6 × 2.4 m</p>
+      </div>
+      <table class="cutlist__table">
+        <caption class="visually-hidden">Materials for a 3.6 by 2.4 metre decking frame</caption>
+        <thead>
+          <tr>
+            <th scope="col">Item</th>
+            <th scope="col">Size</th>
+            <th scope="col" class="num">Qty</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of cutList; track row.item) {
+            <tr>
+              <th scope="row">{{ row.item }}</th>
+              <td class="mono">{{ row.size }}</td>
+              <td class="mono num">{{ row.qty }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+      <p class="cutlist__note">Send us your cut list and we'll have it racked and ready.</p>
+    </div>
+  </div>
+</section>

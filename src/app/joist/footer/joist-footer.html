@@ -1,0 +1,59 @@
+<footer cxSkipLink="cx-footer" [cxFocus]="{ disableMouseFocus: true }">
+  <section class="trade" aria-labelledby="footer-trade-title">
+    <div class="inner trade__inner">
+      <div>
+        <h2 id="footer-trade-title" class="trade__title">Buying for the job?</h2>
+        <p class="trade__text">Trade account holders get trade pricing, 30-day credit and priority collection slots.</p>
+      </div>
+      <a class="trade__cta" routerLink="/login/register">Open a trade account</a>
+    </div>
+  </section>
+
+  <div class="inner main">
+    <div class="brand">
+      <app-joist-logo [height]="44" />
+      <p class="brand__tagline">Build it right.</p>
+      <dl class="hours">
+        <dt>Depots</dt>
+        <dd>Mon–Sat 06:30–20:00</dd>
+        <dd>Sun 08:00–16:00</dd>
+        <dt>Customer service</dt>
+        <dd class="mono">01632 960 123</dd>
+      </dl>
+    </div>
+
+    <nav class="columns" aria-label="Footer">
+      <div class="column">
+        <h2 class="column__title">Shop</h2>
+        <ul>
+          @for (department of departments; track department.query) {
+            <li><a [routerLink]="['/search', department.query]">{{ department.name }}</a></li>
+          }
+        </ul>
+      </div>
+      <div class="column">
+        <h2 class="column__title">Help</h2>
+        <ul>
+          @for (link of help; track link.path) {
+            <li><a [routerLink]="link.path">{{ link.label }}</a></li>
+          }
+        </ul>
+      </div>
+      <div class="column">
+        <h2 class="column__title">Your account</h2>
+        <ul>
+          @for (link of account; track link.path) {
+            <li><a [routerLink]="link.path">{{ link.label }}</a></li>
+          }
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="legal">
+    <div class="inner legal__inner">
+      <p class="legal__copy">© 2026 Joist Building Supplies Ltd. Prices include VAT unless marked ex. VAT.</p>
+      <cx-page-slot position="Footer" class="legal__cms" />
+    </div>
+  </div>
+</footer>

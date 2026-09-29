@@ -69,7 +69,8 @@
               "src/styles/spartacus/storefinder.scss",
               "src/styles/spartacus/pickup-in-store.scss",
               "src/styles/spartacus/asm.scss",
-              "src/styles/spartacus/product.scss"
+              "src/styles/spartacus/product.scss",
+              "src/styles/joist.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": ["node_modules/"],

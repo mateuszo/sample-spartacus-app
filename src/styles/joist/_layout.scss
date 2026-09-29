@@ -1,0 +1,315 @@
+// Joist styling for Spartacus layout and content components:
+// page header, site context, tabs, footer, consent banner, facets.
+
+// Page header: breadcrumb and <h1> on a sunken band under the header.
+cx-breadcrumb {
+  display: block;
+  padding: var(--joist-space-4) var(--joist-space-4) var(--joist-space-6);
+  background-color: var(--joist-surface-sunken);
+  border-bottom: 1px solid var(--joist-line);
+  box-shadow: none;
+
+  nav,
+  h1 {
+    max-width: var(--cx-page-width-max);
+    margin-inline: auto;
+
+    // Match the header's inner padding so the crumbs line up with the logo.
+    @include media-breakpoint-up(lg) {
+      padding-inline: 10px;
+    }
+  }
+
+  nav {
+    justify-content: flex-start;
+    padding: 0 0 var(--joist-space-2);
+
+    ol {
+      justify-content: flex-start;
+    }
+
+    ol li {
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      color: var(--joist-ink-muted);
+
+      &:not(:last-child):after {
+        margin-inline: var(--joist-space-2);
+        color: var(--joist-ink-muted);
+      }
+
+      a {
+        color: var(--joist-link);
+      }
+
+      &:last-child a {
+        color: var(--joist-ink-muted);
+        text-decoration: none;
+      }
+    }
+  }
+
+  h1 {
+    margin-block: 0;
+    text-align: start;
+    text-transform: uppercase;
+    white-space: normal;
+  }
+}
+
+// The homepage is its own page header: keep the <h1> for assistive tech only.
+.LandingPage2Template app-joist-page-header cx-breadcrumb {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Tabs: product details and delivery method.
+cx-tab {
+  --cx-tab-btn-bg-color: transparent;
+  --cx-tab-btn-font-size: 1.125rem;
+  --cx-tab-panel-bg: var(--joist-surface);
+  --cx-tab-panel-padding: var(--joist-space-8) 0;
+  --cx-tab-panel-border-top: 1px solid var(--joist-line);
+
+  .tab-btn {
+    font-family: var(--joist-font-display);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--joist-ink-muted);
+
+    &.active,
+    &:hover:not([disabled]) {
+      color: var(--joist-ink);
+    }
+
+    &:after {
+      height: 3px;
+      background: var(--joist-ink);
+    }
+  }
+}
+
+cx-tab-paragraph-container {
+  background: var(--joist-surface);
+}
+
+// Delivery method: square option tiles instead of pills.
+cx-pickup-options {
+  .cx-pickup-options-container {
+    background-color: var(--joist-surface-sunken);
+    border-radius: var(--joist-radius-md);
+    gap: var(--joist-space-3);
+  }
+
+  .cx-pickup-options-legend {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  cx-tab {
+    --cx-tab-btn-border: 1px solid var(--joist-line-control);
+    --cx-tab-btn-border-radius: var(--joist-radius-sm);
+    --cx-tab-btn-bg-color: var(--joist-surface);
+    --cx-tab-btn-font-size: 0.9375rem;
+    --cx-tab-gap: var(--joist-space-2);
+    --cx-tab-panel-padding: var(--joist-space-2) var(--joist-space-3);
+    --cx-tab-panel-margin-top: var(--joist-space-2);
+    --cx-tab-panel-border-radius: var(--joist-radius-sm);
+    --cx-tab-panel-border-top: 1px solid var(--joist-line);
+    --cx-tab-panel-border-end: 1px solid var(--joist-line);
+    --cx-tab-panel-border-bottom: 1px solid var(--joist-line);
+    --cx-tab-panel-border-start: 1px solid var(--joist-line);
+
+    .tab .tab-btn {
+      min-height: 44px;
+      padding: var(--joist-space-2) var(--joist-space-3);
+      font-family: var(--joist-font-body);
+      font-weight: 600;
+      letter-spacing: normal;
+      text-transform: none;
+      color: var(--joist-ink);
+
+      &:after {
+        display: none;
+      }
+
+      &.active {
+        border: 2px solid var(--joist-ink);
+        box-shadow: inset 0 0 0 1px var(--joist-ink);
+      }
+    }
+  }
+}
+
+// Product image thumbnails: solid ink frame on the active image.
+cx-product-images .thumbs .item cx-media {
+  border: 2px solid var(--joist-line);
+  border-radius: var(--joist-radius-sm);
+
+  &.is-active,
+  &:hover {
+    border-color: var(--joist-ink);
+    border-style: solid;
+  }
+}
+
+// Carousels: product photos already have white grounds.
+cx-product-carousel-item cx-media {
+  background: none;
+}
+
+cx-carousel,
+cx-carousel-scrolling {
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.75rem;
+  }
+
+  .indicators button {
+    color: var(--joist-concrete-400);
+
+    &[disabled] {
+      color: var(--joist-ink);
+    }
+  }
+
+  button.previous,
+  button.next {
+    color: var(--joist-ink);
+
+    &[disabled] {
+      color: var(--joist-concrete-300);
+    }
+  }
+}
+
+// Facets
+cx-product-facet-navigation {
+  h4,
+  .h4 {
+    font-family: var(--joist-font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}
+
+cx-facet {
+  .cx-facet-header {
+    font-weight: 600;
+  }
+
+  a.value,
+  button.value {
+    color: var(--joist-ink);
+  }
+
+  a.value.selected .cx-facet-text,
+  .cx-facet-text:hover {
+    color: var(--joist-link);
+  }
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  accent-color: var(--joist-ink);
+}
+
+cx-active-facets a {
+  border: 1px solid var(--joist-line-control);
+  border-radius: var(--joist-radius-sm);
+  color: var(--joist-ink);
+}
+
+cx-scroll-to-top .cx-scroll-to-top-btn {
+  background-color: var(--joist-graphite-900);
+  border: 2px solid var(--joist-hivis-500);
+  border-radius: var(--joist-radius-md);
+  color: var(--joist-hivis-500);
+}
+
+// Cookie consent banner
+cx-anonymous-consent-management-banner .anonymous-consent-banner {
+  background-color: var(--joist-graphite-900);
+  color: var(--joist-ink-inverse);
+  border-top: 4px solid var(--joist-hivis-500);
+
+  .cx-banner-title {
+    font-family: var(--joist-font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .cx-banner-description {
+    color: var(--joist-concrete-300);
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    border-color: var(--joist-ink-inverse);
+    color: var(--joist-ink-inverse);
+
+    &:hover {
+      background-color: var(--joist-graphite-800);
+      color: var(--joist-ink-inverse);
+    }
+  }
+}
+
+// Global messages
+cx-global-message .alert {
+  border-radius: 0;
+  font-weight: 500;
+
+  &.alert-success {
+    background-color: var(--joist-level-100);
+    color: var(--joist-level-700);
+  }
+
+  &.alert-danger {
+    background-color: var(--joist-brick-100);
+    color: var(--joist-brick-700);
+  }
+
+  &.alert-warning {
+    background-color: var(--joist-hivis-100);
+    color: var(--joist-hivis-800);
+  }
+
+  &.alert-info {
+    background-color: var(--joist-blueprint-100);
+    color: var(--joist-blueprint-700);
+  }
+}
+
+// Modals (add-to-cart, consent, pickup store)
+.modal-content,
+.cx-modal-content,
+.cx-dialog-content {
+  border: 0;
+  border-radius: var(--joist-radius-md);
+  box-shadow: var(--joist-shadow-raised);
+}
+
+.cx-dialog-header,
+.modal-header {
+  border-bottom: 1px solid var(--joist-line);
+
+  .cx-dialog-title,
+  .modal-title {
+    font-family: var(--joist-font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}

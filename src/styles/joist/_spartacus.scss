@@ -113,42 +113,24 @@ a {
   border-radius: var(--joist-radius-sm);
 }
 
-// Header: one graphite bar; links and cart read white/hi-vis on it.
-header {
-  background: var(--joist-graphite-900);
-  color: var(--joist-ink-inverse);
+.form-control:focus,
+.form-control[type='text']:focus {
+  border-color: var(--joist-ink);
+  background-color: var(--joist-surface);
+}
 
-  @include media-breakpoint-up(lg) {
-    background: var(--joist-graphite-900);
-  }
+label .label-content {
+  font-weight: 600;
+}
 
-  .SiteLogo {
-    padding-block: var(--joist-space-3);
-  }
+// Checkboxes: square-cut, graphite when checked.
+.form-check input[type='checkbox'] {
+  border-radius: var(--joist-radius-sm);
+  border-color: var(--joist-ink);
 
-  a,
-  .SiteLinks a,
-  cx-login a,
-  .cx-login-greet {
-    color: var(--joist-ink-inverse);
-
-    &:hover {
-      color: var(--joist-hivis-500);
-    }
-  }
-
-  .NavigationBar {
-    border-top: 1px solid var(--joist-graphite-700);
-  }
-
-  cx-mini-cart a {
-    background-color: transparent;
-    color: var(--joist-ink-inverse);
-  }
-
-  cx-mini-cart .count {
-    background-color: var(--joist-action);
-    color: var(--joist-on-action);
+  &:checked {
+    border-color: var(--joist-ink);
+    background-color: var(--joist-ink);
   }
 }
 

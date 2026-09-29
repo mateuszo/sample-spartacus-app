@@ -241,17 +241,32 @@ Every interactive element shows a 2px solid `focus` outline with a 2px offset. O
 | File | What it does |
 | --- | --- |
 | `src/styles-config.scss` | Feeds the palette into Spartacus's `--cx-color-*` variables (`primary` = `blueprint-700`, `background-dark` = `graphite-900`, …). Must come before `@spartacus/styles`. |
+| `src/styles/joist.scss` | Entry point for all Joist styles. It is the **last** entry in `angular.json` `styles`, after the Spartacus feature stylesheets. |
 | `src/styles/joist/_fonts.scss` | Self-hosted Barlow, Barlow Condensed, IBM Plex Mono. |
 | `src/styles/joist/_tokens.scss` | Every token as a `--joist-*` CSS custom property. |
-| `src/styles/joist/_spartacus.scss` | Global restyling: body and heading type, links, buttons, form controls, header, footer, focus colour. |
-| `src/styles/joist/_product.scss` | Commerce components: product grid cards, list items, carousels, product page price/SKU/stock badge, spec table. |
-| `src/app/joist/logo/joist-logo.ts` | `app-joist-logo`, placed in the `SiteLogo` slot via `cxOutletRef` in `app.component.html`. |
+| `src/styles/joist/_spartacus.scss` | Global restyling: body and heading type, links, buttons, form controls and checkboxes, header, footer, focus colour. |
+| `src/styles/joist/_product.scss` | Commerce components: product grid cards, list items, carousels, search suggestions, product page price/SKU/stock badge, spec table. |
+| `src/styles/joist/_layout.scss` | Page header (breadcrumb + `<h1>`), site context selector, tabs, delivery method tiles, image thumbnails, facets, footer, consent banner, global messages, modals. |
+| `src/styles/joist/_cart.scss` | Cart line items, order summary panel, checkout progress, address/payment cards. |
+| `src/app/joist/joist.providers.ts` | `provideJoist()`, registered in `app.config.ts`. Wires every Joist replacement into Spartacus through outlets (`OutletPosition.REPLACE`) and CMS component mappings. |
+| `src/app/joist/header/` | `app-joist-header` replaces the `cx-header` outlet: a hi-vis service strip (with site links and language/currency), a graphite bar (logo, search, account, trolley) and a category bar. Phones use the Spartacus navigation drawer. |
+| `src/app/joist/footer/` | `app-joist-footer` replaces the `cx-footer` outlet: trade-account band, Joist navigation columns, depot hours, legal line. The CMS Footer slot is kept for consent and scroll-to-top only. |
+| `src/app/joist/mini-cart/` | `app-joist-mini-cart` replaces the CMS `MiniCartComponent` with a yellow trolley button showing count and total. |
+| `src/app/joist/account/` | `app-joist-account-link` replaces the CMS `LoginComponent`: "Sign in / Account" for guests, a greeting and account link once signed in. |
+| `src/app/joist/home/` | Homepage sections. `app-joist-hero` (Section1: headline and blueprint cut list), `app-joist-departments` (Section2A), `app-joist-services` (Section4). Section2B, 2C and 5 are retired with `app-joist-empty-slot`. Section3 keeps the CMS product carousels. |
+| `src/app/joist/catalog/joist-departments.data.ts` | The eight Joist departments used by the homepage and footer. They link to search until the catalogue has matching categories. |
+| `src/app/joist/product/joist-item-details.ts` | Replaces the `ProductListOutlets.ITEM_DETAILS` outlet on listing cards and rows: SKU, rating, stock badge, price with unit line. |
+| `src/app/joist/product/joist-product-intro.ts` | Replaces the CMS `ProductIntroComponent`: SKU chip and rating with a jump-to-reviews link. It extends the Spartacus class to keep that behaviour. |
+| `src/app/joist/product/joist-product-summary.ts` | Replaces the CMS `ProductSummaryComponent`: large price, VAT line, summary and depot promises. |
+| `src/app/joist/logo/joist-logo.ts` | `app-joist-logo`, rendered in the `SiteLogo` slot and in the footer. |
+| `src/app/joist/page-header/joist-page-header.ts` | `app-joist-page-header` renders the Spartacus breadcrumb in `BottomHeaderSlot`. The backend CMS leaves that slot empty, so without it pages have no `<h1>`. On the homepage it is visually hidden. |
+| `src/styles/joist/_header.scss`, `_home.scss` | Styles for the Spartacus components inside the Joist header and footer, and the homepage slot layout. |
 | `public/brand/`, `public/favicon.svg` | Logo files. |
 
 Conventions:
 
 - Use `var(--joist-*)` tokens in component styles. Don't hard-code hex values.
-- Joist styles are imported after Spartacus's in `src/styles.scss`, so equal-specificity rules win. When a Spartacus rule is more specific, match its selector depth rather than using `!important`. The one exception is `--cx-color-visual-focus`, which Spartacus sets with `!important`.
+- Joist styles load after all Spartacus stylesheets, so equal-specificity rules win. When a Spartacus rule is more specific, match its selector depth rather than using `!important`. The one exception is `--cx-color-visual-focus`, which Spartacus sets with `!important`.
 - Spartacus sets `$font-family-sans-serif` without `!default`, so Joist font stacks are applied in CSS, not through Sass variables.
 
 Known gaps:
@@ -259,3 +274,5 @@ Known gaps:
 - The storefront has a light theme only.
 - Low stock can't be shown yet, because Spartacus's add-to-cart markup has no low-stock state. It needs a component override.
 - The trade price badge isn't wired to any data yet.
+- Header category flyouts open with zero height. This happens without Joist styles too, and looks like a CMS navigation data issue.
+- The mobile layout (hamburger menu) hasn't been checked.

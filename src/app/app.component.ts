@@ -1,10 +1,9 @@
 import { Component, signal } from '@angular/core';
-import { OutletRefDirective, StorefrontComponent } from '@spartacus/storefront';
-import { JoistLogo } from './joist/logo/joist-logo';
+import { StorefrontComponent } from '@spartacus/storefront';
 
 @Component({
   selector: 'app-root',
-  imports: [StorefrontComponent, OutletRefDirective, JoistLogo],
+  imports: [StorefrontComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

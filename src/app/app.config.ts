@@ -8,6 +8,7 @@ import { provideRouter } from '@angular/router';
 
 import { provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { AppModule } from './app.module';
+import { provideJoist } from './joist/joist.providers';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -17,5 +18,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(withFetch(), withInterceptorsFromDi()),
     importProvidersFrom(AppModule),
+    provideJoist(),
   ],
 };

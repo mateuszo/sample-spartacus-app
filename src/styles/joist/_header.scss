@@ -1,0 +1,192 @@
+// Spartacus components inside the Joist header (app-joist-header).
+// The header's own layout is in src/app/joist/header/joist-header.scss.
+
+app-joist-header {
+  // Spartacus's generic header styling assumes its own markup; reset it.
+  header {
+    background: var(--joist-graphite-900);
+    color: var(--joist-ink-inverse);
+
+    @include media-breakpoint-up(lg) {
+      background: var(--joist-graphite-900);
+    }
+  }
+
+  // Site links and site context on the hi-vis strip
+  .usp__links {
+    cx-page-slot.SiteLinks {
+      display: flex;
+      gap: var(--joist-space-4);
+    }
+
+    cx-link a {
+      color: var(--joist-on-action);
+      font-weight: 600;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--joist-graphite-900);
+        outline-offset: 2px;
+      }
+    }
+
+    cx-page-slot.SiteContext {
+      display: flex;
+      gap: var(--joist-space-3);
+      padding-inline-start: var(--joist-space-4);
+      border-inline-start: 1px solid rgba(28, 30, 31, 0.3);
+    }
+
+    cx-site-context-selector {
+      margin: 0;
+
+      label span,
+      cx-icon {
+        color: var(--joist-on-action);
+      }
+
+      select {
+        background-color: transparent;
+        color: var(--joist-on-action);
+        font-size: 0.8125rem;
+        font-weight: 600;
+
+        &:focus-visible {
+          outline: 2px solid var(--joist-graphite-900);
+          outline-offset: 2px;
+        }
+
+        option {
+          color: var(--joist-ink);
+          background-color: var(--joist-surface);
+        }
+      }
+    }
+  }
+
+  // Search: a big square field with a hi-vis search button.
+  cx-searchbox {
+    > div,
+    label {
+      width: 100%;
+      max-width: none;
+    }
+
+    label {
+      min-height: 48px;
+      padding: 0;
+      border: 2px solid var(--joist-graphite-900);
+      border-radius: var(--joist-radius-md);
+      background: var(--joist-surface);
+      overflow: hidden;
+
+      &:focus-within {
+        border-color: var(--joist-hivis-500);
+        box-shadow: 0 0 0 2px var(--joist-hivis-500);
+      }
+    }
+
+    // The field's placeholder and the search button name it; keep the label for AT only.
+    .cx-input-label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    .cx-label-inner-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    input {
+      padding-inline: var(--joist-space-4);
+      font-family: var(--joist-font-body);
+      font-size: 1rem;
+      color: var(--joist-ink);
+
+      &::placeholder {
+        color: var(--joist-ink-muted);
+      }
+    }
+
+    .search,
+    button.search {
+      align-self: stretch;
+      min-width: 52px;
+      background: var(--joist-hivis-500);
+      color: var(--joist-graphite-900);
+
+      &:hover {
+        background: var(--joist-hivis-600);
+      }
+    }
+
+    .reset {
+      color: var(--joist-ink-muted);
+    }
+
+    // Suggestions panel
+    .results {
+      border-radius: 0 0 var(--joist-radius-md) var(--joist-radius-md);
+      box-shadow: var(--joist-shadow-raised);
+      color: var(--joist-ink);
+
+      a {
+        color: var(--joist-ink);
+      }
+    }
+  }
+
+  // Category navigation on the graphite-800 bar
+  .categories cx-category-navigation cx-navigation-ui {
+    background-color: transparent;
+
+    > nav > ul > li > span,
+    > nav > ul > li > cx-generic-link > a,
+    > nav > ul > li > button {
+      font-family: var(--joist-font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--joist-ink-inverse);
+    }
+
+    > nav > ul > li:hover > span,
+    > nav > ul > li:hover > cx-generic-link > a,
+    > nav > ul > li:hover > button {
+      color: var(--joist-hivis-500);
+    }
+  }
+
+  // Hamburger (phones and tablets)
+  cx-hamburger-menu .cx-hamburger {
+    color: var(--joist-ink-inverse);
+
+    .hamburger-inner,
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+      background-color: var(--joist-ink-inverse);
+    }
+  }
+
+  // Mobile navigation drawer
+  header.is-expanded cx-page-layout.navigation {
+    background-color: var(--joist-surface);
+    color: var(--joist-ink);
+
+    a,
+    span,
+    button {
+      color: var(--joist-ink);
+    }
+  }
+}

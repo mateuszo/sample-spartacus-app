@@ -1,0 +1,125 @@
+// Layout of the Joist header. Styling of the Spartacus components inside
+// the slots lives in src/styles/joist/_header.scss.
+
+:host {
+  display: block;
+}
+
+.inner {
+  max-width: var(--cx-page-width-max);
+  margin-inline: auto;
+  padding-inline: var(--joist-space-4);
+}
+
+// Hi-vis service strip
+.usp {
+  background: var(--joist-hivis-500);
+  color: var(--joist-on-action);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1rem;
+}
+
+.usp__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--joist-space-4);
+  min-height: 36px;
+}
+
+.usp__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--joist-space-2) var(--joist-space-6);
+  margin: 0;
+  padding: var(--joist-space-2) 0;
+  list-style: none;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--joist-space-2);
+  }
+
+  // Phones: keep the first promise only.
+  @media (max-width: 575.98px) {
+    li:not(:first-child) {
+      display: none;
+    }
+  }
+}
+
+.usp__links {
+  display: none;
+  align-items: center;
+  gap: var(--joist-space-4);
+
+  @media (min-width: 992px) {
+    display: flex;
+  }
+}
+
+// Main bar
+header {
+  background: var(--joist-graphite-900);
+  color: var(--joist-ink-inverse);
+}
+
+.bar {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  grid-template-areas: 'burger logo . actions' 'search search search search';
+  align-items: center;
+  gap: var(--joist-space-3) var(--joist-space-4);
+  padding-block: var(--joist-space-3);
+
+  @media (min-width: 992px) {
+    grid-template-columns: auto minmax(320px, 1fr) auto;
+    grid-template-areas: 'logo search actions';
+    gap: var(--joist-space-8);
+    padding-block: var(--joist-space-4);
+  }
+}
+
+.bar__burger {
+  grid-area: burger;
+
+  @media (min-width: 992px) {
+    display: none;
+  }
+}
+
+.bar__logo {
+  grid-area: logo;
+}
+
+.bar__search {
+  grid-area: search;
+}
+
+.bar__actions {
+  grid-area: actions;
+  display: flex;
+  align-items: center;
+  gap: var(--joist-space-4);
+}
+
+.bar__login {
+  display: none;
+
+  @media (min-width: 992px) {
+    display: block;
+  }
+}
+
+// Category bar
+.categories {
+  display: none;
+  background: var(--joist-graphite-800);
+  border-top: 1px solid var(--joist-graphite-700);
+
+  @media (min-width: 992px) {
+    display: block;
+  }
+}

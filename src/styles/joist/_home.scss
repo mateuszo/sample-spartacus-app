@@ -1,0 +1,79 @@
+// Homepage (LandingPage2Template) layout around the Joist sections.
+
+cx-page-layout.LandingPage2Template {
+  max-width: none;
+
+  cx-page-slot.Section1,
+  cx-page-slot.Section2A,
+  cx-page-slot.Section4 {
+    --cx-flex-basis: 100%;
+    flex: 1 1 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  cx-page-slot.Section2B,
+  cx-page-slot.Section2C,
+  cx-page-slot.Section5 {
+    display: none;
+  }
+
+  cx-page-slot.Section3 {
+    padding-block: var(--joist-space-12) var(--joist-space-8);
+    padding-inline: var(--joist-space-4);
+
+    cx-product-carousel + cx-product-carousel {
+      margin-top: var(--joist-space-12);
+    }
+
+    cx-carousel h2,
+    cx-carousel-scrolling h2 {
+      text-align: start;
+      font-size: 2rem;
+      line-height: 2.25rem;
+      padding-bottom: var(--joist-space-3);
+      border-bottom: 2px solid var(--joist-ink);
+    }
+  }
+}
+
+// Footer: the kept CMS slot supplies consent + scroll-to-top only.
+app-joist-footer .legal__cms {
+  display: flex;
+  align-items: center;
+  gap: var(--joist-space-4);
+
+  cx-footer-navigation,
+  cx-paragraph {
+    display: none;
+  }
+
+  cx-anonymous-consent-open-dialog {
+    border: 0;
+    background: none;
+
+    .btn-link {
+      padding: 0;
+      min-height: 0;
+      color: var(--joist-ink-inverse);
+      font-family: var(--joist-font-body);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: normal;
+      text-transform: none;
+      text-decoration: underline;
+
+      &:hover {
+        color: var(--joist-hivis-500);
+      }
+    }
+  }
+}
+
+// The consent banner is position: fixed without horizontal offsets, so inside
+// the footer's flex row it would start at its static x position.
+app-joist-footer cx-anonymous-consent-management-banner .anonymous-consent-banner {
+  left: 0;
+  right: 0;
+  width: auto;
+}
