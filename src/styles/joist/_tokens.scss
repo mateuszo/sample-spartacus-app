@@ -1,0 +1,72 @@
+// Joist design system tokens.
+// Source of truth for the storefront; mirrored in the Joist design system
+// artifact (tokens.json). Colors needed by Spartacus itself are also set as
+// Sass inputs in `src/styles-config.scss`.
+
+:root {
+  // Brand
+  --joist-hivis-500: #ffc20e;
+  --joist-hivis-600: #e6a800;
+  --joist-hivis-100: #fff3c4;
+  --joist-hivis-800: #8a5300;
+  --joist-blueprint-700: #1d3f8f;
+  --joist-blueprint-800: #152e6b;
+  --joist-blueprint-100: #e6ecf8;
+
+  // Neutrals
+  --joist-graphite-900: #1c1e1f;
+  --joist-graphite-800: #2a2d2f;
+  --joist-graphite-700: #3a3d3f;
+  --joist-concrete-600: #6a6c68;
+  --joist-concrete-400: #8a8c87;
+  --joist-concrete-300: #c8c9c4;
+  --joist-concrete-200: #e3e3df;
+  --joist-concrete-50: #f4f4f1;
+  --joist-white: #ffffff;
+
+  // Signal
+  --joist-level-700: #1f7a3e;
+  --joist-level-100: #e5f3ea;
+  --joist-brick-700: #b3261e;
+  --joist-brick-100: #fbeae8;
+
+  // Semantic roles
+  --joist-surface: var(--joist-white);
+  --joist-surface-sunken: var(--joist-concrete-50);
+  --joist-ink: var(--joist-graphite-900);
+  --joist-ink-muted: var(--joist-concrete-600);
+  --joist-ink-inverse: var(--joist-white);
+  --joist-line: var(--joist-concrete-200);
+  --joist-line-control: var(--joist-concrete-400);
+  --joist-action: var(--joist-hivis-500);
+  --joist-action-hover: var(--joist-hivis-600);
+  --joist-on-action: var(--joist-graphite-900);
+  --joist-link: var(--joist-blueprint-700);
+  --joist-link-hover: var(--joist-blueprint-800);
+  --joist-focus: var(--joist-blueprint-700);
+
+  // Type
+  --joist-font-display: 'Barlow Condensed', 'Arial Narrow', 'Roboto Condensed', sans-serif;
+  --joist-font-body: 'Barlow', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial,
+    sans-serif;
+  --joist-font-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  // Spacing (4px grid)
+  --joist-space-1: 4px;
+  --joist-space-2: 8px;
+  --joist-space-3: 12px;
+  --joist-space-4: 16px;
+  --joist-space-6: 24px;
+  --joist-space-8: 32px;
+  --joist-space-12: 48px;
+  --joist-space-16: 64px;
+
+  // Radius: square-cut, like sawn timber
+  --joist-radius-sm: 2px;
+  --joist-radius-md: 4px;
+  --joist-radius-pill: 999px;
+
+  // Elevation
+  --joist-shadow-card: 0 1px 0 #e3e3df;
+  --joist-shadow-raised: 0 6px 16px rgba(28, 30, 31, 0.14);
+}

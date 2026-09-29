@@ -1,0 +1,169 @@
+// Joist design system applied to Spartacus components.
+// Imported after `@spartacus/styles/index` so these rules win on equal specificity.
+
+:root {
+  --cx-page-width-max: 1280px;
+  --cx-border-radius: var(--joist-radius-md);
+  --cx-buttons-border-radius: var(--joist-radius-md);
+  --cx-buttons-border-width: 2px;
+  --cx-text-transform: none;
+}
+
+// Spartacus forces its own focus color with !important on the app root;
+// re-point it at the Joist focus token (0,3,1 beats its 0,3,0).
+app-root[class][class][class] {
+  --cx-color-visual-focus: var(--joist-focus) !important;
+}
+
+body {
+  font-family: var(--joist-font-body);
+  color: var(--joist-ink);
+  background-color: var(--joist-surface);
+}
+
+h1,
+h2,
+h3,
+.h1,
+.h2,
+.h3 {
+  font-family: var(--joist-font-display);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+h1,
+.h1 {
+  font-size: 2.5rem;
+  line-height: 1.1;
+}
+
+h2,
+.h2 {
+  font-size: 2rem;
+  line-height: 1.125;
+}
+
+h3,
+.h3 {
+  font-size: 1.5rem;
+  line-height: 1.167;
+  font-weight: 600;
+}
+
+a {
+  color: var(--joist-link);
+
+  &:hover {
+    color: var(--joist-link-hover);
+  }
+}
+
+// Buttons: hi-vis yellow for the one primary action, graphite outline for the rest.
+.btn {
+  font-family: var(--joist-font-display);
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.btn-primary {
+  background-color: var(--joist-action);
+  border-color: var(--joist-action);
+  color: var(--joist-on-action);
+
+  &:hover,
+  &:focus,
+  &.active,
+  &:not(:disabled):not(.disabled):active {
+    background-color: var(--joist-action-hover);
+    border-color: var(--joist-action-hover);
+    color: var(--joist-on-action);
+  }
+
+  &:disabled,
+  &.disabled {
+    background-color: var(--joist-concrete-200);
+    border-color: var(--joist-concrete-200);
+    color: var(--joist-concrete-600);
+  }
+}
+
+.btn-secondary {
+  background-color: var(--joist-surface);
+  border-color: var(--joist-ink);
+  color: var(--joist-ink);
+
+  &:hover,
+  &:focus,
+  &:not(:disabled):not(.disabled):active {
+    background-color: var(--joist-concrete-50);
+    border-color: var(--joist-ink);
+    color: var(--joist-ink);
+  }
+}
+
+.form-control,
+.custom-select,
+.ng-select .ng-select-container {
+  border: 1px solid var(--joist-line-control);
+  border-radius: var(--joist-radius-sm);
+}
+
+// Header: one graphite bar; links and cart read white/hi-vis on it.
+header {
+  background: var(--joist-graphite-900);
+  color: var(--joist-ink-inverse);
+
+  @include media-breakpoint-up(lg) {
+    background: var(--joist-graphite-900);
+  }
+
+  .SiteLogo {
+    padding-block: var(--joist-space-3);
+  }
+
+  a,
+  .SiteLinks a,
+  cx-login a,
+  .cx-login-greet {
+    color: var(--joist-ink-inverse);
+
+    &:hover {
+      color: var(--joist-hivis-500);
+    }
+  }
+
+  .NavigationBar {
+    border-top: 1px solid var(--joist-graphite-700);
+  }
+
+  cx-mini-cart a {
+    background-color: transparent;
+    color: var(--joist-ink-inverse);
+  }
+
+  cx-mini-cart .count {
+    background-color: var(--joist-action);
+    color: var(--joist-on-action);
+  }
+}
+
+// Prices and SKUs
+.cx-product-price,
+.price {
+  font-family: var(--joist-font-display);
+  font-weight: 700;
+}
+
+.code,
+.cx-code {
+  font-family: var(--joist-font-mono);
+}
+
+footer {
+  background-color: var(--joist-graphite-900);
+}

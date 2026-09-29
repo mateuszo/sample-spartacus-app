@@ -1,0 +1,278 @@
+// Joist commerce components applied to Spartacus product views.
+// Mirrors ProductCard, PriceTag, StockBadge and SpecTable in the Joist design system.
+
+%joist-price {
+  font-family: var(--joist-font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 2rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--joist-ink);
+}
+
+%joist-product-title {
+  font-family: var(--joist-font-body);
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+  letter-spacing: normal;
+  text-transform: none;
+  color: var(--joist-ink);
+}
+
+%joist-sku {
+  font-family: var(--joist-font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1rem;
+  color: var(--joist-ink-muted);
+}
+
+%joist-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--joist-space-1);
+  padding: var(--joist-space-1) var(--joist-space-2);
+  border-radius: var(--joist-radius-sm);
+  font-family: var(--joist-font-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+
+  &::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+}
+
+%joist-image-well {
+  background: var(--joist-surface-sunken);
+  border-radius: var(--joist-radius-sm);
+}
+
+// Product card: listing grid (PLP, search results)
+// Cards are the Bootstrap columns themselves, so lay the row out as a grid with a real gap.
+cx-product-list .cx-product-container .row:has(> cx-product-grid-item) {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--joist-space-6);
+  margin: 0;
+
+  > cx-product-grid-item {
+    width: auto;
+    max-width: none;
+  }
+}
+
+cx-product-grid-item {
+  height: 100%;
+  gap: var(--joist-space-3);
+  padding: var(--joist-space-4);
+  background: var(--joist-surface);
+  border: 1px solid var(--joist-line);
+  border-radius: var(--joist-radius-md);
+  box-shadow: var(--joist-shadow-card);
+  transition: box-shadow 0.15s ease;
+
+  &:hover {
+    box-shadow: var(--joist-shadow-raised);
+  }
+
+  .cx-product-image-container {
+    @extend %joist-image-well;
+    margin: 0;
+  }
+
+  .cx-product-image {
+    margin: var(--joist-space-4) 0;
+  }
+
+  .cx-product-name {
+    @extend %joist-product-title;
+    height: auto;
+    margin: 0;
+    text-align: start;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+
+    &:hover {
+      color: var(--joist-link);
+      text-decoration: underline;
+    }
+  }
+
+  .cx-product-rating {
+    text-align: start;
+    font-size: 0.875rem;
+    color: var(--joist-ink-muted);
+  }
+
+  .cx-product-price-container .cx-product-price {
+    @extend %joist-price;
+    margin: 0;
+    text-align: start;
+
+    &.old {
+      font-family: var(--joist-font-body);
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: var(--joist-ink-muted);
+    }
+
+    &.new {
+      color: var(--joist-brick-700);
+    }
+  }
+
+  cx-add-to-cart .btn {
+    width: 100%;
+  }
+}
+
+// Product list view (PLP list mode)
+cx-product-list-item {
+  .cx-product-name {
+    @extend %joist-product-title;
+  }
+
+  .cx-product-price {
+    @extend %joist-price;
+  }
+}
+
+// Homepage and PDP carousels
+cx-product-carousel-item {
+  .cx-product-name {
+    @extend %joist-product-title;
+    font-size: 1rem;
+    line-height: 1.375rem;
+    text-align: start;
+  }
+
+  .price {
+    @extend %joist-price;
+    font-size: 1.375rem;
+    line-height: 1.75rem;
+    text-align: start;
+  }
+
+  cx-media {
+    @extend %joist-image-well;
+  }
+}
+
+// Product detail page
+cx-product-intro {
+  .code {
+    @extend %joist-sku;
+  }
+
+  .rating {
+    color: var(--joist-ink-muted);
+  }
+}
+
+cx-product-summary {
+  .price {
+    @extend %joist-price;
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .summary {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
+cx-product-images .main-image,
+cx-product-images cx-media {
+  @extend %joist-image-well;
+}
+
+// Stock state as a badge. `cx-item-counter` only renders when the product has stock,
+// so its presence tells the two states apart.
+cx-add-to-cart .quantity {
+  .cx-counter-stock {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--joist-space-3);
+  }
+
+  .cx-counter-stock .info {
+    @extend %joist-badge;
+    position: static;
+    margin: 0;
+    background: var(--joist-brick-100);
+    color: var(--joist-brick-700);
+  }
+
+  .cx-counter-stock:has(cx-item-counter) .info {
+    background: var(--joist-level-100);
+    color: var(--joist-level-700);
+  }
+}
+
+cx-item-counter {
+  border: 1px solid var(--joist-line-control);
+  border-radius: var(--joist-radius-sm);
+
+  button {
+    color: var(--joist-ink);
+  }
+}
+
+// Spec table: product classifications
+cx-product-attributes {
+  table {
+    max-width: 720px;
+    // Spartacus tab panels already sit on surface-sunken, so tables lift to white.
+    background: var(--joist-surface);
+    border-radius: var(--joist-radius-sm);
+    border-collapse: collapse;
+  }
+
+  table th h2 {
+    @extend %joist-product-title;
+    margin: 0;
+    padding: var(--joist-space-3);
+  }
+
+  table tr {
+    border-width: 1px 0 0;
+    border-color: var(--joist-line);
+  }
+
+  table td {
+    padding: var(--joist-space-2) var(--joist-space-3);
+
+    &:first-child {
+      width: 40%;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      line-height: 1.25rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--joist-ink-muted);
+    }
+
+    &:last-child {
+      font-family: var(--joist-font-mono);
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      font-variant-numeric: tabular-nums;
+    }
+  }
+
+  table ul {
+    margin: 0;
+  }
+}

@@ -1,1 +1,31 @@
 $styleVersion: 221121.18;
+
+// Joist design system: Spartacus theme inputs.
+// These override the `!default` values in the Santorini theme, so they must be
+// declared before `@spartacus/styles` is imported. Keep them in sync with
+// `src/styles/joist/_tokens.scss`.
+
+// Fonts are self-hosted via @fontsource in `src/styles/joist/_fonts.scss`; Santorini
+// hard-sets `$font-family-sans-serif`, so the Joist stacks are applied in CSS instead.
+
+$primary: #1d3f8f; // blueprint-700
+$primary-accent: #152e6b; // blueprint-800
+$secondary: #3a3d3f; // graphite-700
+$success: #1f7a3e; // level-700
+$success-accent: #e5f3ea; // level-100
+$danger: #b3261e; // brick-700
+$danger-accent: #fbeae8; // brick-100
+$warning: #8a5300; // hivis-800
+$warning-accent: #fff3c4; // hivis-100
+$info: #1d3f8f; // blueprint-700
+$info-accent: #e6ecf8; // blueprint-100
+$light: #e3e3df; // concrete-200
+$medium: #c8c9c4; // concrete-300
+$dark: #6a6c68; // concrete-600
+$background: #f4f4f1; // concrete-50
+$background-dark: #1c1e1f; // graphite-900
+$inverse: #ffffff;
+$text: #1c1e1f; // graphite-900
+$visual-focus: #1d3f8f; // blueprint-700
+$disabled: #6a6c68;
+$disabled-accent: #8a8c87;

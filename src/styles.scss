@@ -23,3 +23,9 @@
 
 // ORDER IMPORTANT: Spartacus styles last
 @import '@spartacus/styles/index';
+
+// Joist design system (after Spartacus so it takes precedence)
+@import 'styles/joist/fonts';
+@import 'styles/joist/tokens';
+@import 'styles/joist/spartacus';
+@import 'styles/joist/product';
