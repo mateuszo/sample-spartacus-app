@@ -141,3 +141,117 @@ cx-card .cx-card.active,
 .cx-card-selected {
   border: 2px solid var(--joist-ink);
 }
+
+// Cart page layout: one consistent column on the right.
+cx-page-layout.CartPageTemplate {
+  padding-block-start: var(--joist-space-8);
+
+  // Spartacus splits the row 68% / 30% with flex-basis; a column-gap would wrap it.
+  .CenterRightContentSlot {
+    gap: var(--joist-space-6);
+
+    @include media-breakpoint-up(lg) {
+      padding-inline-start: var(--joist-space-4);
+
+      // Totals, then the checkout button, then the secondary tools.
+      app-joist-cart-totals {
+        order: 1;
+      }
+
+      cx-cart-proceed-to-checkout {
+        order: 2;
+      }
+
+      cx-cart-coupon {
+        order: 3;
+      }
+
+      cx-cart-quick-order-form {
+        order: 4;
+      }
+    }
+
+    > * {
+      padding-inline: 0;
+      margin: 0;
+    }
+  }
+}
+
+// Line items: graphite header band, roomy rows.
+cx-cart-item-list {
+  .cx-item-list-header {
+    background: var(--joist-graphite-900);
+
+    th {
+      border: 0;
+    }
+
+    th,
+    th.cx-item-list-qty,
+    .cx-item-list-desc {
+      padding-block: var(--joist-space-3);
+      color: var(--joist-hivis-500);
+    }
+
+    th:first-child {
+      padding-inline-start: var(--joist-space-4);
+      border-start-start-radius: var(--joist-radius-sm);
+    }
+
+    th:last-child {
+      padding-inline-end: var(--joist-space-4);
+      border-start-end-radius: var(--joist-radius-sm);
+    }
+  }
+
+  .cx-item-list-row {
+    border-bottom: 1px solid var(--joist-line);
+
+    &:hover {
+      background: var(--joist-concrete-50);
+    }
+
+    > td:first-child {
+      padding-inline-start: var(--joist-space-4);
+    }
+  }
+
+  .cx-image-container {
+    display: block;
+    padding: var(--joist-space-1);
+  }
+
+  .cx-name a {
+    font-size: 1.0625rem;
+  }
+
+  .cx-total .cx-value {
+    font-family: var(--joist-font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+  }
+
+  .cx-remove-btn button,
+  .cx-remove-btn .btn {
+    font-family: var(--joist-font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    letter-spacing: normal;
+    text-transform: none;
+    color: var(--joist-brick-700);
+    text-decoration: underline;
+  }
+}
+
+// Cart heading ("Trolley #…")
+cx-cart-details .cart-details-wrapper > h2,
+cx-cart-details .cx-total {
+  font-family: var(--joist-font-display);
+}
+
+// Proceed to checkout: the one big yellow action.
+cx-cart-proceed-to-checkout .btn-primary {
+  min-height: 56px;
+  font-size: 1.25rem;
+}

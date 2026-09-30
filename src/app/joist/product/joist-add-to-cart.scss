@@ -1,0 +1,84 @@
+:host {
+  display: block;
+}
+
+.buy {
+  display: grid;
+  gap: var(--joist-space-4);
+  padding: var(--joist-space-6);
+  border: 2px solid var(--joist-ink);
+  border-radius: var(--joist-radius-md);
+  background: var(--joist-surface);
+}
+
+.buy--compact {
+  gap: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+.buy__stock {
+  display: flex;
+  align-items: center;
+  gap: var(--joist-space-2);
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--joist-level-700);
+
+  &::before {
+    content: '';
+    flex: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+}
+
+.buy__stock--out {
+  color: var(--joist-brick-700);
+}
+
+.buy__stock-count {
+  font-weight: 500;
+  color: var(--joist-ink-muted);
+}
+
+.buy__qty {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--joist-space-3) var(--joist-space-4);
+}
+
+.buy__label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.buy__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--joist-space-2);
+  width: 100%;
+  min-height: 56px;
+  font-size: 1.25rem;
+}
+
+.buy--compact .buy__submit {
+  min-height: 44px;
+  font-size: 1rem;
+}
+
+.buy__unavailable {
+  margin: 0;
+  padding: var(--joist-space-2) 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--joist-brick-700);
+}

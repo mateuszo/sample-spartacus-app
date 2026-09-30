@@ -1,0 +1,138 @@
+// Listing pages (category, search, brand) around app-joist-product-list.
+
+// List view rows
+app-joist-product-list .rows cx-product-list-item {
+  display: block;
+  height: auto;
+  padding: var(--joist-space-4) 0;
+  border-bottom: 1px solid var(--joist-line);
+
+  .cx-product-image-container {
+    border-radius: var(--joist-radius-sm);
+    background: var(--joist-surface-sunken);
+  }
+
+  .cx-product-name {
+    font-family: var(--joist-font-body);
+    font-size: 1.125rem;
+    font-weight: 600;
+    text-transform: none;
+    color: var(--joist-ink);
+  }
+
+  .cx-product-summary {
+    margin-top: var(--joist-space-2);
+    font-size: 0.9375rem;
+    color: var(--joist-ink-muted);
+  }
+}
+
+// Sorting and view toggle in the Joist toolbar
+app-joist-product-list {
+  cx-sorting .ng-select .ng-select-container {
+    min-height: 44px;
+    border: 1px solid var(--joist-line-control);
+    border-radius: var(--joist-radius-sm);
+  }
+
+  cx-product-view .cx-product-layout {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--joist-ink);
+    border-radius: var(--joist-radius-sm);
+    color: var(--joist-ink);
+  }
+}
+
+// Pagination: square steps, graphite current page
+cx-pagination {
+  a {
+    min-width: 44px;
+    min-height: 44px;
+    border-color: var(--joist-line);
+    color: var(--joist-ink);
+    font-weight: 600;
+
+    &:hover {
+      background-color: var(--joist-concrete-50);
+      color: var(--joist-ink);
+    }
+
+    &.current {
+      border-color: var(--joist-graphite-900);
+      background-color: var(--joist-graphite-900);
+      color: var(--joist-hivis-500);
+    }
+  }
+}
+
+// Filters: a sunken panel with graphite group headers.
+cx-product-facet-navigation {
+  cx-facet-list {
+    display: block;
+    padding: var(--joist-space-4);
+    border-radius: var(--joist-radius-md);
+    background: var(--joist-surface-sunken);
+  }
+
+  cx-facet {
+    margin-bottom: var(--joist-space-2);
+    padding: 0;
+    border: 1px solid var(--joist-line);
+    border-radius: var(--joist-radius-sm);
+    background: var(--joist-surface);
+
+    .cx-facet-header {
+      padding: var(--joist-space-3);
+      font-family: var(--joist-font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--joist-ink);
+    }
+
+    > a,
+    > button:not(.cx-facet-header),
+    .cx-facet-value,
+    .value {
+      padding-inline: var(--joist-space-3);
+    }
+
+    .cx-facet-count {
+      color: var(--joist-ink-muted);
+      font-variant-numeric: tabular-nums;
+    }
+  }
+}
+
+// Active filters as removable graphite chips
+cx-active-facets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--joist-space-2);
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--joist-space-2);
+    padding: var(--joist-space-1) var(--joist-space-3);
+    border: 0;
+    border-radius: var(--joist-radius-sm);
+    background: var(--joist-graphite-900);
+    color: var(--joist-ink-inverse);
+    font-size: 0.875rem;
+    font-weight: 600;
+
+    &:hover {
+      background: var(--joist-graphite-800);
+      color: var(--joist-hivis-500);
+    }
+
+    cx-icon {
+      color: var(--joist-hivis-500);
+    }
+  }
+}

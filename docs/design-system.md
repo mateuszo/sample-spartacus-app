@@ -258,6 +258,11 @@ Every interactive element shows a 2px solid `focus` outline with a 2px offset. O
 | `src/app/joist/product/joist-item-details.ts` | Replaces the `ProductListOutlets.ITEM_DETAILS` outlet on listing cards and rows: SKU, rating, stock badge, price with unit line. |
 | `src/app/joist/product/joist-product-intro.ts` | Replaces the CMS `ProductIntroComponent`: SKU chip and rating with a jump-to-reviews link. It extends the Spartacus class to keep that behaviour. |
 | `src/app/joist/product/joist-product-summary.ts` | Replaces the CMS `ProductSummaryComponent`: large price, VAT line, summary and depot promises. |
+| `src/app/joist/product/joist-product-list.ts` | Replaces the CMS product list, grid and search-results components. It extends the Spartacus list, so sorting, pagination and view mode keep working, but always opens on the card grid. The toolbar shows the result count, sort and view toggle. |
+| `src/app/joist/product/joist-product-card.ts` | Listing card: image well, name, `app-joist-item-details`, and a compact add-to-trolley button. It provides its own `ProductListItemContext`. |
+| `src/app/joist/product/joist-add-to-cart.ts` | Replaces the CMS `ProductAddToCartComponent`. It extends the Spartacus component, so cart updates, stock rules, pickup-in-store and the added dialog are unchanged. On the product page it's a bordered buy box; in cards it's just the button. |
+| `src/app/joist/cart/joist-cart-totals.ts` | Replaces the CMS `CartTotalsComponent`: a graphite "Trolley summary" with a free-delivery meter (threshold `JOIST_FREE_DELIVERY_THRESHOLD`, 75 in the cart currency) and totals. |
+| `src/styles/joist/_plp.scss`, `_pdp.scss` | Listing rows, filters, active-filter chips and pagination; product page grid (7:5 gallery and buy column), gallery well, tabs spacing. |
 | `src/app/joist/logo/joist-logo.ts` | `app-joist-logo`, rendered in the `SiteLogo` slot and in the footer. |
 | `src/app/joist/page-header/joist-page-header.ts` | `app-joist-page-header` renders the Spartacus breadcrumb in `BottomHeaderSlot`. The backend CMS leaves that slot empty, so without it pages have no `<h1>`. On the homepage it is visually hidden. |
 | `src/styles/joist/_header.scss`, `_home.scss` | Styles for the Spartacus components inside the Joist header and footer, and the homepage slot layout. |
@@ -274,5 +279,6 @@ Known gaps:
 - The storefront has a light theme only.
 - Low stock can't be shown yet, because Spartacus's add-to-cart markup has no low-stock state. It needs a component override.
 - The trade price badge isn't wired to any data yet.
+- "Trolley" wording is set through translation overrides in `joist.providers.ts` (add-to-cart, dialog, cart heading). The cart page title "Your Shopping Cart" comes from the CMS.
 - Header category flyouts open with zero height. This happens without Joist styles too, and looks like a CMS navigation data issue.
 - The mobile layout (hamburger menu) hasn't been checked.

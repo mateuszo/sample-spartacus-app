@@ -167,11 +167,16 @@ cx-product-carousel-item cx-media {
   background: none;
 }
 
+// Carousels: left-aligned section heading on a heavy rule.
 cx-carousel,
 cx-carousel-scrolling {
   h2 {
-    font-size: 1.5rem;
-    line-height: 1.75rem;
+    margin-bottom: var(--joist-space-6);
+    padding-bottom: var(--joist-space-3);
+    border-bottom: 2px solid var(--joist-ink);
+    font-size: 2rem;
+    line-height: 2.25rem;
+    text-align: start;
   }
 
   .indicators button {

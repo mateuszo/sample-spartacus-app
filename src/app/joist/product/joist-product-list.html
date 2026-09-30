@@ -1,0 +1,56 @@
+@if (model$ | async; as model) {
+  <section class="plp" tabindex="-1" [attr.aria-label]="'productList.productListResults' | cxTranslate">
+    @if (viewMode$ | async; as viewMode) {
+      <div class="toolbar">
+        <p class="toolbar__count">
+          <span class="toolbar__total">{{ model.pagination?.totalResults ?? 0 }}</span>
+          {{ model.pagination?.totalResults === 1 ? 'product' : 'products' }}
+        </p>
+        <label class="toolbar__sort">
+          <span class="toolbar__label">{{ 'productList.sortBy' | cxTranslate }}</span>
+          <cx-sorting
+            [sortOptions]="model.sorts"
+            (sortListEvent)="sortList($event)"
+            [selectedOption]="model.pagination?.sort"
+            [ariaLabel]="'productList.sortResults' | cxTranslate"
+            ariaControls="product-results-list"
+            placeholder="{{ 'productList.sortBy' | cxTranslate }}"
+          />
+        </label>
+        <cx-product-view class="toolbar__view" (modeChange)="setViewMode($event)" [mode]="viewMode" />
+      </div>
+
+      <div id="product-results-list" class="results">
+        @if (isInfiniteScroll) {
+          <cx-product-scroll [scrollConfig]="scrollConfig" [model]="model" [inputViewMode]="viewMode" />
+        } @else if (viewMode === ViewModes.Grid) {
+          <ul class="grid">
+            @for (product of model.products; track product.code) {
+              <li><app-joist-product-card [product]="product" /></li>
+            }
+          </ul>
+        } @else {
+          <div class="rows">
+            @for (product of model.products; track product.code; let i = $index) {
+              <cx-product-list-item [product]="product" [itemIndex]="i" class="cx-product-search-list" />
+            }
+          </div>
+        }
+      </div>
+
+      @if (!isInfiniteScroll && (model.pagination?.totalPages ?? 0) > 1) {
+        <nav class="pager" [attr.aria-label]="'productList.productSearchPagination' | cxTranslate">
+          <p class="pager__status">
+            Page {{ (model.pagination?.currentPage ?? 0) + 1 }} of {{ model.pagination?.totalPages }}
+          </p>
+          <cx-pagination
+            [pagination]="model.pagination"
+            queryParam="currentPage"
+            [defaultPage]="0"
+            paginationID="pagination-bottom"
+          />
+        </nav>
+      }
+    }
+  </section>
+}

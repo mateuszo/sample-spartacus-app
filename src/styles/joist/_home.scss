@@ -25,15 +25,6 @@ cx-page-layout.LandingPage2Template {
     cx-product-carousel + cx-product-carousel {
       margin-top: var(--joist-space-12);
     }
-
-    cx-carousel h2,
-    cx-carousel-scrolling h2 {
-      text-align: start;
-      font-size: 2rem;
-      line-height: 2.25rem;
-      padding-bottom: var(--joist-space-3);
-      border-bottom: 2px solid var(--joist-ink);
-    }
   }
 }
 

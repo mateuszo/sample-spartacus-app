@@ -1,0 +1,57 @@
+@if (cart(); as cart) {
+  <section class="totals" aria-labelledby="totals-title">
+    <h2 id="totals-title" class="totals__title">Trolley summary</h2>
+
+    <div class="delivery" [class.delivery--done]="remaining() === 0">
+      @if (remaining() === 0) {
+        <p class="delivery__text">
+          <span class="fa-solid fa-truck" aria-hidden="true"></span>
+          You qualify for free delivery.
+        </p>
+      } @else {
+        <p class="delivery__text">
+          <span class="fa-solid fa-truck" aria-hidden="true"></span>
+          Spend <strong>{{ remaining() | currency: currency() }}</strong> more for free delivery.
+        </p>
+      }
+      <div
+        class="meter"
+        role="progressbar"
+        aria-label="Progress to free delivery"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        [attr.aria-valuenow]="progress()"
+        [attr.aria-valuetext]="progress() + '% of ' + (threshold | currency: currency())"
+      >
+        <span class="meter__fill" [style.width.%]="progress()"></span>
+      </div>
+    </div>
+
+    <dl class="rows">
+      <div class="line">
+        <dt>Subtotal ({{ cart.totalItems ?? 0 }} {{ cart.totalItems === 1 ? 'item' : 'items' }})</dt>
+        <dd>{{ cart.subTotal?.formattedValue }}</dd>
+      </div>
+      @if (cart.totalDiscounts?.value) {
+        <div class="line line--saving">
+          <dt>Savings</dt>
+          <dd>−{{ cart.totalDiscounts?.formattedValue }}</dd>
+        </div>
+      }
+      <div class="line">
+        <dt>Delivery</dt>
+        <dd>{{ cart.deliveryCost?.formattedValue ?? 'Calculated at checkout' }}</dd>
+      </div>
+      <div class="line line--total">
+        <dt>Total</dt>
+        <dd>{{ cart.totalPriceWithTax?.formattedValue ?? cart.totalPrice?.formattedValue }}</dd>
+      </div>
+      @if (cart.totalTax?.formattedValue) {
+        <div class="line line--note">
+          <dt>Includes VAT of</dt>
+          <dd>{{ cart.totalTax?.formattedValue }}</dd>
+        </div>
+      }
+    </dl>
+  </section>
+}

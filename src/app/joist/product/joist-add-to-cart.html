@@ -1,0 +1,58 @@
+@if (productCode) {
+  <form class="buy" [class.buy--compact]="!showQuantity" [formGroup]="addToCartForm" (submit)="addToCart()">
+    @if (showQuantity) {
+      <p class="buy__stock" [class.buy__stock--out]="!hasStock" [id]="stockId">
+        @if (hasStock) {
+          In stock
+          @if (showInventory$ | async) {
+            @if (getInventory(); as inventory) {
+              <span class="buy__stock-count">· {{ inventory }} available</span>
+            }
+          }
+        } @else {
+          Out of stock
+        }
+      </p>
+
+      @if (hasStock) {
+        <div class="buy__qty">
+          <span class="buy__label" aria-hidden="true">{{ 'addToCart.quantityFull' | cxTranslate }}</span>
+          <cx-item-counter
+            [max]="maxQuantity"
+            [control]="quantityControl"
+            [ariaDescribedById]="stockId"
+          />
+        </div>
+      }
+    }
+
+    @if (hasStock) {
+      <ng-template
+        [cxOutlet]="CartOutlets.ADD_TO_CART_PICKUP_OPTION"
+        [(cxComponentRef)]="pickupOptionCompRef"
+        (cxComponentRefChange)="onPickupOptionsCompLoaded()"
+      ></ng-template>
+
+      <button
+        #addToCartDialogTriggerEl
+        type="submit"
+        class="btn btn-primary buy__submit"
+        [disabled]="disabled || quantity <= 0 || quantity > maxQuantity || unavailable"
+        [attr.aria-label]="
+          productName
+            ? ('addToCart.addToCart' | cxTranslate) + ', ' + productName
+            : ('addToCart.addToCart' | cxTranslate)
+        "
+      >
+        <span class="fa-solid fa-cart-shopping" aria-hidden="true"></span>
+        {{
+          unavailable
+            ? ('addToCart.unavailable' | cxTranslate)
+            : (customLabel ?? ('addToCart.addToCart' | cxTranslate))
+        }}
+      </button>
+    } @else if (!showQuantity) {
+      <p class="buy__unavailable">Out of stock</p>
+    }
+  </form>
+}

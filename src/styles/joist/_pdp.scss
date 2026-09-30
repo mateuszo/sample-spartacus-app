@@ -1,0 +1,52 @@
+// Product detail page layout around the Joist intro, price block and buy box.
+
+cx-page-layout.ProductDetailsPageTemplate {
+  cx-page-slot.Summary {
+    max-width: var(--cx-page-width-max);
+    margin-inline: auto;
+    padding-inline: var(--joist-space-4);
+
+    @include media-breakpoint-up(lg) {
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      column-gap: var(--joist-space-12);
+
+      app-joist-product-intro,
+      app-joist-product-summary,
+      app-joist-add-to-cart,
+      cx-product-variants,
+      cx-add-to-wishlist,
+      cx-configure-product {
+        grid-column: 2;
+      }
+
+      app-joist-add-to-cart {
+        padding: 0;
+      }
+    }
+
+    cx-add-to-wishlist {
+      margin-top: var(--joist-space-3);
+    }
+  }
+
+  // Gallery: one big image well, thumbnails underneath.
+  cx-product-images {
+    > cx-media,
+    .main-image {
+      padding: var(--joist-space-6);
+      border-radius: var(--joist-radius-md);
+      background: var(--joist-surface-sunken);
+    }
+  }
+
+  cx-page-slot.Tabs {
+    max-width: var(--cx-page-width-max);
+    margin: var(--joist-space-12) auto 0;
+    padding-inline: var(--joist-space-4);
+  }
+
+  cx-page-slot.UpSelling,
+  cx-page-slot.CrossSelling {
+    padding: var(--joist-space-12) var(--joist-space-4) 0;
+  }
+}
