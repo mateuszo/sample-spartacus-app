@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FocusDirective, PageSlotComponent, SkipLinkDirective } from '@spartacus/storefront';
 import { JOIST_DEPARTMENTS } from '../catalog/joist-departments.data';
+import { JoistCompareTray } from '../compare/joist-compare-tray';
 import { JoistLogo } from '../logo/joist-logo';
 
 interface FooterLink {
@@ -16,7 +17,7 @@ interface FooterLink {
  */
 @Component({
   selector: 'app-joist-footer',
-  imports: [RouterLink, FocusDirective, SkipLinkDirective, PageSlotComponent, JoistLogo],
+  imports: [RouterLink, FocusDirective, SkipLinkDirective, PageSlotComponent, JoistLogo, JoistCompareTray],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './joist-footer.html',
   styleUrl: './joist-footer.scss',

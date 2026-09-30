@@ -1,0 +1,57 @@
+<p class="visually-hidden" aria-live="polite">{{ compare.announcement() }}</p>
+
+@if (compare.count() > 0 && !compare.isOpen()) {
+  <!-- Keeps the end of the page reachable above the fixed tray. -->
+  <div class="tray-spacer" aria-hidden="true"></div>
+  <section class="tray" aria-labelledby="compare-tray-title">
+    <div class="tray__inner">
+      <div class="tray__head">
+        <h2 id="compare-tray-title" class="tray__title">Compare</h2>
+        <p class="tray__count">{{ compare.count() }} of {{ limit }} selected</p>
+      </div>
+
+      <ul class="tray__slots">
+        @for (slot of slots(); track $index) {
+          <li class="slot" [class.slot--empty]="!slot.code">
+            @if (slot.code) {
+              <span class="slot__image">
+                @if (slot.product) {
+                  <cx-media [container]="slot.product.images?.['PRIMARY']" format="thumbnail" [alt]="''" />
+                }
+              </span>
+              <span class="slot__name">{{ slot.product?.name ?? slot.code }}</span>
+              <button
+                type="button"
+                class="slot__remove"
+                [attr.aria-label]="'Remove ' + (slot.product?.name ?? slot.code) + ' from compare'"
+                (click)="compare.remove(slot.code, slot.product?.name)"
+              >
+                <span class="fa-solid fa-xmark" aria-hidden="true"></span>
+              </button>
+            } @else {
+              <span class="slot__placeholder">Add a product</span>
+            }
+          </li>
+        }
+      </ul>
+
+      <div class="tray__actions">
+        <button
+          type="button"
+          class="btn btn-primary tray__compare"
+          [disabled]="!canCompare()"
+          [attr.aria-describedby]="canCompare() ? null : 'compare-tray-hint'"
+          (click)="compare.isOpen.set(true)"
+        >
+          Compare {{ compare.count() }}
+        </button>
+        @if (!canCompare()) {
+          <p id="compare-tray-hint" class="tray__hint">Pick at least 2 products</p>
+        }
+        <button type="button" class="tray__clear" (click)="compare.clear()">Clear all</button>
+      </div>
+    </div>
+  </section>
+}
+
+<app-joist-compare-dialog />

@@ -1,0 +1,260 @@
+:host {
+  display: contents;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.dialog {
+  width: min(1200px, calc(100vw - 32px));
+  max-width: none;
+  max-height: calc(100dvh - 32px);
+  padding: 0;
+  border: 0;
+  border-radius: var(--joist-radius-md);
+  background: var(--joist-surface);
+  color: var(--joist-ink);
+  box-shadow: 0 24px 64px rgba(28, 30, 31, 0.4);
+
+  &[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &::backdrop {
+    background: rgba(28, 30, 31, 0.7);
+  }
+}
+
+.dialog__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--joist-space-3) var(--joist-space-6);
+  padding: var(--joist-space-4) var(--joist-space-6);
+  border-bottom: 4px solid var(--joist-hivis-500);
+  background: var(--joist-graphite-900);
+  color: var(--joist-ink-inverse);
+
+  > div {
+    margin-inline-end: auto;
+  }
+}
+
+.dialog__title {
+  margin: 0;
+  font-family: var(--joist-font-display);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--joist-ink-inverse);
+}
+
+.dialog__sub {
+  margin: var(--joist-space-1) 0 0;
+  font-size: 0.875rem;
+  color: var(--joist-concrete-300);
+}
+
+.dialog__diff {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--joist-space-2);
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+
+  input {
+    position: static;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    accent-color: var(--joist-hivis-500);
+  }
+}
+
+.dialog__close {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--joist-ink-inverse);
+  border-radius: var(--joist-radius-md);
+  background: none;
+  color: var(--joist-ink-inverse);
+  font-size: 1.25rem;
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--joist-hivis-500);
+    color: var(--joist-hivis-500);
+  }
+}
+
+.dialog__head :focus-visible {
+  outline: 2px solid var(--joist-hivis-500);
+  outline-offset: 2px;
+}
+
+.dialog__body {
+  overflow: auto;
+}
+
+.dialog__loading {
+  margin: 0;
+  padding: var(--joist-space-3) var(--joist-space-6);
+  background: var(--joist-blueprint-100);
+  color: var(--joist-blueprint-700);
+  font-weight: 600;
+}
+
+.scroller {
+  overflow-x: auto;
+}
+
+// Table: sticky label column, sticky product header.
+.table {
+  width: 100%;
+  min-width: calc(180px + var(--cols, 2) * 220px);
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9375rem;
+
+  th,
+  td {
+    padding: var(--joist-space-3) var(--joist-space-4);
+    border-bottom: 1px solid var(--joist-line);
+    text-align: start;
+    vertical-align: top;
+  }
+
+  tbody th[scope='row'] {
+    position: sticky;
+    inset-inline-start: 0;
+    z-index: 1;
+    width: 180px;
+    background: var(--joist-surface-sunken);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--joist-ink-muted);
+  }
+
+  tbody td {
+    font-family: var(--joist-font-mono);
+    font-size: 0.875rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  // Differences get a hi-vis edge on the label cell, plus bold values.
+  tr.is-different th[scope='row'] {
+    box-shadow: inset 4px 0 0 var(--joist-hivis-500);
+    color: var(--joist-ink);
+  }
+
+  tr.is-different td {
+    font-weight: 600;
+  }
+}
+
+.table__corner {
+  position: sticky;
+  inset-inline-start: 0;
+  z-index: 2;
+  background: var(--joist-surface);
+}
+
+.table__section th {
+  padding-top: var(--joist-space-6);
+  border-bottom: 2px solid var(--joist-ink);
+  background: var(--joist-surface);
+  font-family: var(--joist-font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--joist-ink);
+}
+
+.table__empty {
+  padding: var(--joist-space-8);
+  font-family: var(--joist-font-body);
+  text-align: center;
+  color: var(--joist-ink-muted);
+}
+
+// Product header cells
+.product {
+  position: relative;
+  min-width: 220px;
+  padding-top: var(--joist-space-6);
+  font-family: var(--joist-font-body);
+  font-weight: 400;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.product__remove {
+  position: absolute;
+  top: var(--joist-space-2);
+  inset-inline-end: var(--joist-space-2);
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--joist-line-control);
+  border-radius: var(--joist-radius-sm);
+  background: var(--joist-surface);
+  color: var(--joist-ink);
+  cursor: pointer;
+
+  &:hover {
+    border-color: var(--joist-ink);
+  }
+}
+
+.product__image {
+  display: block;
+  aspect-ratio: 1;
+  max-width: 160px;
+  margin-bottom: var(--joist-space-3);
+  padding: var(--joist-space-2);
+  border-radius: var(--joist-radius-sm);
+  background: var(--joist-surface-sunken);
+}
+
+.product__name {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--joist-ink);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--joist-link);
+    text-decoration: underline;
+  }
+}
+
+.product__price {
+  margin: var(--joist-space-2) 0 var(--joist-space-3);
+  font-family: var(--joist-font-display);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.product :focus-visible {
+  outline: 2px solid var(--joist-focus);
+  outline-offset: 2px;
+}

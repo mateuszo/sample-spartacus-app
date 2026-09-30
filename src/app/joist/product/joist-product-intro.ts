@@ -1,6 +1,7 @@
 import { AsyncPipe, DecimalPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ProductIntroComponent, StarRatingComponent } from '@spartacus/storefront';
+import { JoistCompareToggle } from '../compare/joist-compare-toggle';
 
 /**
  * PDP intro (replaces ProductIntroComponent): SKU chip and rating. Extends the
@@ -8,7 +9,7 @@ import { ProductIntroComponent, StarRatingComponent } from '@spartacus/storefron
  */
 @Component({
   selector: 'app-joist-product-intro',
-  imports: [AsyncPipe, DecimalPipe, StarRatingComponent],
+  imports: [AsyncPipe, DecimalPipe, StarRatingComponent, JoistCompareToggle],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     @if (product$ | async; as product) {
@@ -23,6 +24,9 @@ import { ProductIntroComponent, StarRatingComponent } from '@spartacus/storefron
           </span>
         } @else {
           <span class="rating__none">No reviews yet</span>
+        }
+        @if (product.code) {
+          <app-joist-compare-toggle class="compare" [code]="product.code" [name]="product.name ?? 'Product'" />
         }
       </div>
     }
@@ -76,6 +80,10 @@ import { ProductIntroComponent, StarRatingComponent } from '@spartacus/storefron
     .rating__link:focus-visible {
       outline: 2px solid var(--joist-focus);
       outline-offset: 2px;
+    }
+
+    .compare {
+      margin-inline-start: auto;
     }
 
     .rating__none {

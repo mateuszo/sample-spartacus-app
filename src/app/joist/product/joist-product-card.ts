@@ -8,13 +8,14 @@ import {
   ProductListItemContextSource,
 } from '@spartacus/storefront';
 import { of } from 'rxjs';
+import { JoistCompareToggle } from '../compare/joist-compare-toggle';
 import { JoistAddToCart } from './joist-add-to-cart';
 import { JoistItemDetails } from './joist-item-details';
 
 /** Product card for Joist listing grids (category, search, brand pages). */
 @Component({
   selector: 'app-joist-product-card',
-  imports: [RouterLink, UrlPipe, MediaComponent, JoistItemDetails, JoistAddToCart],
+  imports: [RouterLink, UrlPipe, MediaComponent, JoistItemDetails, JoistAddToCart, JoistCompareToggle],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     ProductListItemContextSource,
@@ -36,6 +37,9 @@ import { JoistItemDetails } from './joist-item-details';
         <a [routerLink]="{ cxRoute: 'product', params: product() } | cxUrl" [innerHTML]="name()"></a>
       </h3>
       <app-joist-item-details />
+      @if (product().code; as code) {
+        <app-joist-compare-toggle [code]="code" [name]="product().name ?? 'Product'" />
+      }
       @if (showAddToCart()) {
         <app-joist-add-to-cart class="card__buy" />
       }

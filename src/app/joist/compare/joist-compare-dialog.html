@@ -1,0 +1,86 @@
+<dialog #dialog class="dialog" aria-labelledby="compare-title" (close)="onClose()">
+  @if (compare.isOpen()) {
+    <div class="dialog__head">
+      <div>
+        <h2 id="compare-title" class="dialog__title">Compare products</h2>
+        <p class="dialog__sub">{{ compare.count() }} products side by side</p>
+      </div>
+      <label class="dialog__diff">
+        <input
+          id="compare-differences-only"
+          type="checkbox"
+          [checked]="differencesOnly()"
+          (change)="toggleDifferences($event)"
+        />
+        Show differences only
+      </label>
+      <button type="button" class="dialog__close" aria-label="Close comparison" (click)="onClose()">
+        <span class="fa-solid fa-xmark" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <div class="dialog__body">
+      @if (loading()) {
+        <p class="dialog__loading" role="status">Loading product details…</p>
+      }
+
+      <div class="scroller">
+        <table class="table" [style.--cols]="products().length">
+          <caption class="visually-hidden">
+            Comparison of {{ products().length }} products
+          </caption>
+          <thead>
+            <tr>
+              <td class="table__corner"></td>
+              @for (product of products(); track product.code) {
+                <th scope="col" class="product">
+                  <button
+                    type="button"
+                    class="product__remove"
+                    [attr.aria-label]="'Remove ' + product.name + ' from compare'"
+                    (click)="compare.remove(product.code ?? '', product.name)"
+                  >
+                    <span class="fa-solid fa-xmark" aria-hidden="true"></span>
+                  </button>
+                  <a class="product__image" [routerLink]="{ cxRoute: 'product', params: product } | cxUrl" tabindex="-1" aria-hidden="true">
+                    <cx-media [container]="product.images?.['PRIMARY']" format="product" [alt]="''" />
+                  </a>
+                  <a class="product__name" [routerLink]="{ cxRoute: 'product', params: product } | cxUrl">
+                    {{ product.name }}
+                  </a>
+                  <p class="product__price">{{ product.price?.formattedValue }}</p>
+                  @if (product.price && product.purchasable !== false) {
+                    <app-joist-add-to-cart [product]="product" [showQuantity]="false" />
+                  }
+                </th>
+              }
+            </tr>
+          </thead>
+          @for (section of sections(); track section.title) {
+            <tbody>
+              <tr class="table__section">
+                <th scope="colgroup" [attr.colspan]="products().length + 1">{{ section.title }}</th>
+              </tr>
+              @for (row of section.rows; track row.label) {
+                <tr [class.is-different]="row.differs">
+                  <th scope="row">{{ row.label }}</th>
+                  @for (value of row.values; track $index) {
+                    <td>{{ value }}</td>
+                  }
+                </tr>
+              }
+            </tbody>
+          } @empty {
+            <tbody>
+              <tr>
+                <td [attr.colspan]="products().length + 1" class="table__empty">
+                  These products have the same values for every listed feature.
+                </td>
+              </tr>
+            </tbody>
+          }
+        </table>
+      </div>
+    </div>
+  }
+</dialog>

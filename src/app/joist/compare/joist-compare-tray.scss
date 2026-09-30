@@ -1,0 +1,178 @@
+:host {
+  display: contents;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.tray-spacer {
+  height: 96px;
+}
+
+.tray {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 40;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  border-top: 4px solid var(--joist-hivis-500);
+  background: var(--joist-graphite-900);
+  color: var(--joist-ink-inverse);
+  box-shadow: 0 -8px 24px rgba(28, 30, 31, 0.25);
+}
+
+.tray__inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--joist-space-4) var(--joist-space-6);
+  max-width: var(--cx-page-width-max);
+  margin-inline: auto;
+  padding: var(--joist-space-3) var(--joist-space-4);
+
+  @media (max-width: 767.98px) {
+    grid-template-columns: 1fr auto;
+
+    .tray__slots {
+      display: none;
+    }
+  }
+}
+
+.tray__title {
+  margin: 0;
+  font-family: var(--joist-font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--joist-hivis-500);
+}
+
+.tray__count {
+  margin: var(--joist-space-1) 0 0;
+  font-size: 0.8125rem;
+  color: var(--joist-concrete-300);
+}
+
+.tray__slots {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--joist-space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.slot {
+  display: grid;
+  grid-template-columns: 40px 1fr auto;
+  align-items: center;
+  gap: var(--joist-space-2);
+  min-height: 56px;
+  padding: var(--joist-space-1) var(--joist-space-2);
+  border-radius: var(--joist-radius-sm);
+  background: var(--joist-graphite-800);
+}
+
+.slot--empty {
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr;
+  border: 1px dashed var(--joist-graphite-700);
+  background: none;
+}
+
+.slot__image {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--joist-radius-sm);
+  background: var(--joist-white);
+  overflow: hidden;
+}
+
+.slot__name {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.slot__remove {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: var(--joist-radius-sm);
+  background: none;
+  color: var(--joist-concrete-300);
+  cursor: pointer;
+
+  &:hover {
+    background: var(--joist-graphite-700);
+    color: var(--joist-hivis-500);
+  }
+}
+
+.slot__placeholder {
+  font-size: 0.8125rem;
+  color: var(--joist-concrete-300);
+}
+
+.tray__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--joist-space-2) var(--joist-space-4);
+}
+
+.tray__compare {
+  min-width: 140px;
+}
+
+// The disabled primary button needs to stay legible on graphite.
+.tray__compare:disabled {
+  background: var(--joist-graphite-700);
+  border-color: var(--joist-graphite-700);
+  color: var(--joist-concrete-300);
+  opacity: 1;
+}
+
+.tray__hint {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: var(--joist-concrete-300);
+}
+
+.tray__clear {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--joist-ink-inverse);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--joist-hivis-500);
+  }
+}
+
+button:focus-visible {
+  outline: 2px solid var(--joist-hivis-500);
+  outline-offset: 2px;
+}
