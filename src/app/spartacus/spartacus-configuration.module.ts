@@ -14,6 +14,7 @@ import {
   layoutConfigFactory,
   mediaConfig,
 } from '@spartacus/storefront';
+import { environment } from '../../environments/environment';
 
 @NgModule({
   declarations: [],
@@ -25,14 +26,14 @@ import {
     provideConfig(<OccConfig>{
       backend: {
         occ: {
-          baseUrl: 'https://your-occ-host.example.com',
+          baseUrl: environment.occBaseUrl,
         },
       },
     }),
     provideConfig(<AuthConfig>{
       authentication: {
-        client_id: 'vuestorefront',
-        client_secret: 'your-client-secret',
+        client_id: environment.authClientId,
+        client_secret: environment.authClientSecret,
       }
     }),
     provideConfig(<SiteContextConfig>{

@@ -2,6 +2,14 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.24.
 
+## Configuration
+
+The backend URL and OAuth client credentials live in `src/environments/environment.ts`, which is gitignored. Create it from the template and fill in your values:
+
+```bash
+cp src/environments/environment.example.ts src/environments/environment.ts
+```
+
 ## Development server
 
 To start a local development server, run:

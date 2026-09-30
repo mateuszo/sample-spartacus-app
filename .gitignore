@@ -48,6 +48,8 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+# Backend URL and OAuth client credentials — copy from environment.example.ts
+/src/environments/environment.ts
 
 # Logs
 *.log
