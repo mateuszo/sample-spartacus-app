@@ -115,6 +115,7 @@ header {
 
 // Category bar
 .categories {
+  position: relative; // anchors the mega-menu panel
   display: none;
   background: var(--joist-graphite-800);
   border-top: 1px solid var(--joist-graphite-700);

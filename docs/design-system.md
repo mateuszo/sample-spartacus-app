@@ -263,6 +263,7 @@ Every interactive element shows a 2px solid `focus` outline with a 2px offset. O
 | `src/app/joist/product/joist-add-to-cart.ts` | Replaces the CMS `ProductAddToCartComponent`. It extends the Spartacus component, so cart updates, stock rules, pickup-in-store and the added dialog are unchanged. On the product page it's a bordered buy box; in cards it's just the button. |
 | `src/app/joist/cart/joist-cart-totals.ts` | Replaces the CMS `CartTotalsComponent`: a graphite "Trolley summary" with a free-delivery meter (threshold `JOIST_FREE_DELIVERY_THRESHOLD`, 75 in the cart currency) and totals. |
 | `src/styles/joist/_plp.scss`, `_pdp.scss` | Listing rows, filters, active-filter chips and pagination; product page grid (7:5 gallery and buy column), gallery well, tabs spacing. |
+| `src/app/joist/mega-nav/` | `app-joist-mega-nav` replaces the CMS `CategoryNavigationComponent`, using the CMS tree from `NavigationService`. On desktop, department buttons (disclosure pattern, `aria-expanded`) open a full-width panel: department title and "Shop all" link, category columns, and a click-and-collect tile. It opens on hover or click and closes on Escape (focus returns to the button), on focus or click outside, and on navigation. Below lg it's an accordion inside the hamburger drawer. |
 | `src/app/joist/logo/joist-logo.ts` | `app-joist-logo`, rendered in the `SiteLogo` slot and in the footer. |
 | `src/app/joist/page-header/joist-page-header.ts` | `app-joist-page-header` renders the Spartacus breadcrumb in `BottomHeaderSlot`. The backend CMS leaves that slot empty, so without it pages have no `<h1>`. On the homepage it is visually hidden. |
 | `src/styles/joist/_header.scss`, `_home.scss` | Styles for the Spartacus components inside the Joist header and footer, and the homepage slot layout. |
@@ -280,5 +281,4 @@ Known gaps:
 - Low stock can't be shown yet, because Spartacus's add-to-cart markup has no low-stock state. It needs a component override.
 - The trade price badge isn't wired to any data yet.
 - "Trolley" wording is set through translation overrides in `joist.providers.ts` (add-to-cart, dialog, cart heading). The cart page title "Your Shopping Cart" comes from the CMS.
-- Header category flyouts open with zero height. This happens without Joist styles too, and looks like a CMS navigation data issue.
 - The mobile layout (hamburger menu) hasn't been checked.

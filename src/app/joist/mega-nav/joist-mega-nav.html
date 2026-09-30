@@ -1,0 +1,120 @@
+@if (isDesktop()) {
+  <nav
+    class="mega"
+    aria-label="Shop by department"
+    (keydown.escape)="closeAndFocusTrigger($event)"
+    (focusout)="onFocusOut($event)"
+    (mouseleave)="hoverLeave()"
+    (mouseenter)="cancelClose()"
+  >
+    <ul class="bar">
+      @for (item of items(); track item.id) {
+        <li class="bar__item" (mouseenter)="item.groups.length ? hoverOpen(item.id) : hoverLeave()">
+          @if (item.groups.length) {
+            <button
+              type="button"
+              class="bar__trigger"
+              [class.is-open]="openId() === item.id"
+              [attr.aria-expanded]="openId() === item.id"
+              [attr.aria-controls]="item.id + '-panel'"
+              (click)="toggle(item.id)"
+            >
+              {{ item.title }}
+              <span class="bar__chevron fa-solid fa-chevron-down" aria-hidden="true"></span>
+            </button>
+          } @else {
+            <a class="bar__trigger" [routerLink]="item.url">{{ item.title }}</a>
+          }
+        </li>
+      }
+    </ul>
+
+    @for (item of items(); track item.id) {
+      @if (item.groups.length) {
+        <div class="panel" [id]="item.id + '-panel'" [hidden]="openId() !== item.id">
+          <div class="panel__inner">
+            <div class="panel__intro">
+              <p class="panel__eyebrow">Department</p>
+              <h2 class="panel__title">{{ item.title }}</h2>
+              @if (item.url) {
+                <a class="panel__all" [routerLink]="item.url">
+                  Shop all {{ item.title }}
+                  <span class="fa-solid fa-arrow-right" aria-hidden="true"></span>
+                </a>
+              }
+            </div>
+
+            <div class="panel__groups">
+              @for (group of item.groups; track $index) {
+                <section class="group" [attr.aria-label]="group.title ?? item.title">
+                  @if (group.title) {
+                    <h3 class="group__title">
+                      @if (group.url) {
+                        <a [routerLink]="group.url">{{ group.title }}</a>
+                      } @else {
+                        {{ group.title }}
+                      }
+                    </h3>
+                  }
+                  <ul class="group__links">
+                    @for (link of group.links; track $index) {
+                      <li>
+                        <a [routerLink]="link.url">{{ link.title }}</a>
+                      </li>
+                    }
+                  </ul>
+                </section>
+              }
+            </div>
+
+            <aside class="panel__promo" aria-label="Click and collect">
+              <span class="panel__promo-icon fa-solid fa-store" aria-hidden="true"></span>
+              <p class="panel__promo-title">Need it today?</p>
+              <p class="panel__promo-text">Order online and collect from your depot in 2 hours.</p>
+              <a class="panel__promo-link" routerLink="/store-finder">Find your depot</a>
+            </aside>
+          </div>
+        </div>
+      }
+    }
+  </nav>
+} @else {
+  <nav class="drawer" aria-label="Shop by department">
+    <p class="drawer__heading">Shop by department</p>
+    <ul class="drawer__list">
+      @for (item of items(); track item.id) {
+        <li class="drawer__item">
+          @if (item.groups.length) {
+            <button
+              type="button"
+              class="drawer__trigger"
+              [attr.aria-expanded]="isExpanded(item.id)"
+              [attr.aria-controls]="item.id + '-drawer'"
+              (click)="toggleExpanded(item.id)"
+            >
+              {{ item.title }}
+              <span class="drawer__chevron fa-solid fa-chevron-down" aria-hidden="true"></span>
+            </button>
+            <div class="drawer__panel" [id]="item.id + '-drawer'" [hidden]="!isExpanded(item.id)">
+              @if (item.url) {
+                <a class="drawer__all" [routerLink]="item.url">Shop all {{ item.title }}</a>
+              }
+              @for (group of item.groups; track $index) {
+                @if (group.title) {
+                  <p class="drawer__group">{{ group.title }}</p>
+                }
+                <ul class="drawer__links">
+                  @for (link of group.links; track $index) {
+                    <li><a [routerLink]="link.url">{{ link.title }}</a></li>
+                  }
+                </ul>
+              }
+            </div>
+          } @else {
+            <a class="drawer__trigger" [routerLink]="item.url">{{ item.title }}</a>
+          }
+        </li>
+      }
+    </ul>
+  </nav>
+}

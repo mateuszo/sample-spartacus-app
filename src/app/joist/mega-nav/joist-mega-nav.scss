@@ -1,0 +1,333 @@
+// The panel is positioned against the header's category bar
+// (`.categories { position: relative }` in joist-header.scss), so it spans
+// the full viewport width under the bar.
+
+:host {
+  display: block;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--joist-hivis-500);
+  outline-offset: -2px;
+}
+
+// Desktop bar
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bar__trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--joist-space-2);
+  min-height: 52px;
+  padding: 0 var(--joist-space-4);
+  border: 0;
+  background: none;
+  color: var(--joist-ink-inverse);
+  font-family: var(--joist-font-display);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+
+  // Hi-vis underline marks the hovered/open department.
+  &::after {
+    content: '';
+    position: absolute;
+    inset-inline: var(--joist-space-4);
+    bottom: 0;
+    height: 4px;
+    background: var(--joist-hivis-500);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.15s ease;
+  }
+
+  &:hover,
+  &.is-open {
+    color: var(--joist-hivis-500);
+  }
+
+  &:hover::after,
+  &.is-open::after {
+    transform: scaleX(1);
+  }
+}
+
+.bar__item:first-child .bar__trigger {
+  padding-inline-start: 0;
+
+  &::after {
+    inset-inline-start: 0;
+  }
+}
+
+.bar__chevron {
+  font-size: 0.75rem;
+  transition: transform 0.15s ease;
+}
+
+.is-open .bar__chevron {
+  transform: rotate(180deg);
+}
+
+// Desktop panel
+.panel {
+  position: absolute;
+  inset-inline: 0;
+  top: 100%;
+  z-index: 30;
+  border-top: 4px solid var(--joist-hivis-500);
+  background: var(--joist-surface);
+  color: var(--joist-ink);
+  box-shadow: 0 16px 32px rgba(28, 30, 31, 0.22);
+}
+
+.panel__inner {
+  display: grid;
+  grid-template-columns: minmax(200px, 1fr) 3fr minmax(220px, 1fr);
+  gap: var(--joist-space-8);
+  max-width: var(--cx-page-width-max);
+  margin-inline: auto;
+  padding: var(--joist-space-8) var(--joist-space-4);
+}
+
+.panel__eyebrow {
+  margin: 0 0 var(--joist-space-2);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--joist-ink-muted);
+}
+
+.panel__title {
+  margin: 0 0 var(--joist-space-4);
+  font-family: var(--joist-font-display);
+  font-size: 2.25rem;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.panel__all {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--joist-space-2);
+  padding: var(--joist-space-2) var(--joist-space-3);
+  border-radius: var(--joist-radius-sm);
+  background: var(--joist-graphite-900);
+  color: var(--joist-hivis-500);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  &:hover {
+    background: var(--joist-graphite-800);
+    color: var(--joist-hivis-500);
+  }
+
+  &:focus-visible {
+    outline-color: var(--joist-focus);
+    outline-offset: 2px;
+  }
+}
+
+.panel__groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--joist-space-6) var(--joist-space-8);
+  align-content: start;
+}
+
+.group__title {
+  margin: 0 0 var(--joist-space-3);
+  padding-bottom: var(--joist-space-2);
+  border-bottom: 2px solid var(--joist-ink);
+  font-family: var(--joist-font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  a {
+    color: var(--joist-ink);
+    text-decoration: none;
+
+    &:hover {
+      color: var(--joist-link);
+      text-decoration: underline;
+    }
+  }
+}
+
+.group__links {
+  display: grid;
+  gap: var(--joist-space-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  a {
+    display: block;
+    padding: var(--joist-space-1) 0;
+    color: var(--joist-ink);
+    font-size: 0.9375rem;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--joist-link);
+      text-decoration: underline;
+    }
+
+    &:focus-visible {
+      outline-color: var(--joist-focus);
+      outline-offset: 2px;
+    }
+  }
+}
+
+.panel__promo {
+  align-self: start;
+  padding: var(--joist-space-6);
+  border-radius: var(--joist-radius-md);
+  background: var(--joist-graphite-900);
+  color: var(--joist-ink-inverse);
+}
+
+.panel__promo-icon {
+  font-size: 1.5rem;
+  color: var(--joist-hivis-500);
+}
+
+.panel__promo-title {
+  margin: var(--joist-space-3) 0 var(--joist-space-2);
+  font-family: var(--joist-font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.panel__promo-text {
+  margin: 0 0 var(--joist-space-4);
+  font-size: 0.9375rem;
+  color: var(--joist-concrete-300);
+}
+
+.panel__promo-link {
+  color: var(--joist-hivis-500);
+  font-weight: 600;
+
+  &:hover {
+    color: var(--joist-hivis-500);
+  }
+}
+
+// Drawer (below lg)
+.drawer {
+  color: var(--joist-ink);
+}
+
+.drawer__heading {
+  margin: 0;
+  padding: var(--joist-space-4);
+  background: var(--joist-graphite-900);
+  color: var(--joist-hivis-500);
+  font-family: var(--joist-font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.drawer__list,
+.drawer__links {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.drawer__item {
+  border-bottom: 1px solid var(--joist-line);
+}
+
+.drawer__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 52px;
+  padding: 0 var(--joist-space-4);
+  border: 0;
+  background: none;
+  color: var(--joist-ink);
+  font-family: var(--joist-font-display);
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-align: start;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline-color: var(--joist-focus);
+  }
+}
+
+.drawer__chevron {
+  font-size: 0.875rem;
+  transition: transform 0.15s ease;
+}
+
+[aria-expanded='true'] .drawer__chevron {
+  transform: rotate(180deg);
+}
+
+.drawer__panel {
+  padding: 0 var(--joist-space-4) var(--joist-space-4);
+  background: var(--joist-surface-sunken);
+}
+
+.drawer__all {
+  display: block;
+  padding: var(--joist-space-3) 0;
+  color: var(--joist-link);
+  font-weight: 600;
+}
+
+.drawer__group {
+  margin: var(--joist-space-3) 0 var(--joist-space-1);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--joist-ink-muted);
+}
+
+.drawer__links a {
+  display: block;
+  padding: var(--joist-space-2) 0;
+  color: var(--joist-ink);
+  text-decoration: none;
+
+  &:focus-visible {
+    outline-color: var(--joist-focus);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bar__trigger::after,
+  .bar__chevron,
+  .drawer__chevron {
+    transition: none;
+  }
+}

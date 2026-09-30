@@ -10,6 +10,7 @@ import { JoistEmptySlot } from './home/joist-empty-slot';
 import { JoistHero } from './home/joist-hero';
 import { JoistServices } from './home/joist-services';
 import { JoistLogo } from './logo/joist-logo';
+import { JoistMegaNav } from './mega-nav/joist-mega-nav';
 import { JoistMiniCart } from './mini-cart/joist-mini-cart';
 import { JoistPageHeader } from './page-header/joist-page-header';
 import { JoistAddToCart } from './product/joist-add-to-cart';
@@ -48,6 +49,7 @@ export function provideJoist(): Provider[] {
       cmsComponents: {
         MiniCartComponent: { component: JoistMiniCart },
         LoginComponent: { component: JoistAccountLink },
+        CategoryNavigationComponent: { component: JoistMegaNav },
         ProductIntroComponent: { component: JoistProductIntro },
         ProductSummaryComponent: { component: JoistProductSummary },
         ProductAddToCartComponent: { component: JoistAddToCart },

@@ -145,28 +145,6 @@ app-joist-header {
     }
   }
 
-  // Category navigation on the graphite-800 bar
-  .categories cx-category-navigation cx-navigation-ui {
-    background-color: transparent;
-
-    > nav > ul > li > span,
-    > nav > ul > li > cx-generic-link > a,
-    > nav > ul > li > button {
-      font-family: var(--joist-font-display);
-      font-size: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--joist-ink-inverse);
-    }
-
-    > nav > ul > li:hover > span,
-    > nav > ul > li:hover > cx-generic-link > a,
-    > nav > ul > li:hover > button {
-      color: var(--joist-hivis-500);
-    }
-  }
-
   // Hamburger (phones and tablets)
   cx-hamburger-menu .cx-hamburger {
     color: var(--joist-ink-inverse);
@@ -183,10 +161,32 @@ app-joist-header {
     background-color: var(--joist-surface);
     color: var(--joist-ink);
 
-    a,
-    span,
-    button {
+    // The account link is styled for the graphite bar; in the white drawer it needs ink.
+    cx-page-slot.SiteLogin {
+      background-color: var(--joist-surface-sunken);
+      border-bottom: 1px solid var(--joist-line);
+    }
+
+    app-joist-account-link .account {
+      width: 100%;
+      padding-inline: var(--joist-space-4);
       color: var(--joist-ink);
+
+      &:focus-visible {
+        outline-color: var(--joist-focus);
+      }
+    }
+
+    app-joist-account-link .account__eyebrow {
+      color: var(--joist-ink-muted);
+    }
+  }
+
+  cx-hamburger-menu .cx-hamburger.is-active {
+    .hamburger-inner,
+    .hamburger-inner::before,
+    .hamburger-inner::after {
+      background-color: var(--joist-hivis-500);
     }
   }
 }
